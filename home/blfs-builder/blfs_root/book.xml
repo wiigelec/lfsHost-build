@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE book SYSTEM "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book><bookinfo xml:base="book/bookinfo.xml">
+
+  <date>$Date$</date>
+
+  <title>Beyond Linux<superscript>®</superscript> From Scratch 
+  
+  <phrase revision="sysv">(System V</phrase> Edition)</title>
+  <subtitle>Version 11.0</subtitle>
+
+  <authorgroup>
+    <corpauthor>
+      The BLFS Development Team
+    </corpauthor>
+  </authorgroup>
+
+  <pubdate>Published 2021-09-01</pubdate>
+
+  <copyright id="copyright">
+    <year>2001-2021</year>
+    <holder>The BLFS Development Team</holder>
+  </copyright>
+
+  <legalnotice>
+    <para>Copyright © 2001-2021, The BLFS Development Team</para>
+
+    <para>All rights reserved.</para>
+
+    <para>This book is licensed under a <xref linkend="CC"/>.</para>
+
+    <para>
+      Computer instructions may be extracted from the book under the
+      <xref linkend="MIT"/>.
+    </para>
+
+    <para>
+      <trademark class="registered">Linux</trademark> is a registered trademark
+      of Linus Torvalds.
+    </para>
+  </legalnotice>
+
+  <revhistory>
+    <revision>
+      <revnumber>11.0</revnumber>
+      <date>2021-09-01</date>
+      <revremark>Twenty-fourth Release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>10.1</revnumber>
+      <date>2021-03-01</date>
+      <revremark>Twenty-third Release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>10.0</revnumber>
+      <date>2020-09-01</date>
+      <revremark>Twenty-second Release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>9.1</revnumber>
+      <date>2020-03-01</date>
+      <revremark>Twenty-first Release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>9.0</revnumber>
+      <date>2019-09-01</date>
+      <revremark>Twentieth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>8.4</revnumber>
+      <date>2019-03-01</date>
+      <revremark>Nineteenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>8.3</revnumber>
+      <date>2018-09-01</date>
+      <revremark>Eighteenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>8.2</revnumber>
+      <date>2018-03-02</date>
+      <revremark>Seventeenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>8.1</revnumber>
+      <date>2017-09-01</date>
+      <revremark>Sixteenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>8.0</revnumber>
+      <date>2017-02-25</date>
+      <revremark>Fifteenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>7.10</revnumber>
+      <date>2016-09-07</date>
+      <revremark>Fourteenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>7.9</revnumber>
+      <date>2016-03-08</date>
+      <revremark>Thirteenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>7.8</revnumber>
+      <date>2015-10-01</date>
+      <revremark>Twelfth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>7.7</revnumber>
+      <date>2015-03-06</date>
+      <revremark>Eleventh release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>7.6</revnumber>
+      <date>2014-09-23</date>
+      <revremark>Tenth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>7.5</revnumber>
+      <date>2014-03-05</date>
+      <revremark>Ninth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>7.4</revnumber>
+      <date>2013-09-14</date>
+      <revremark>Eighth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>6.3</revnumber>
+      <date>2008-08-24</date>
+      <revremark>Seventh release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>6.2</revnumber>
+      <date>2007-02-14</date>
+      <revremark>Sixth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>6.1</revnumber>
+      <date>2005-08-14</date>
+      <revremark>Fifth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>6.0</revnumber>
+      <date>2005-04-02</date>
+      <revremark>Fourth release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>5.1</revnumber>
+      <date>2004-06-05</date>
+      <revremark>Third release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>5.0</revnumber>
+      <date>2003-11-06</date>
+      <revremark>Second release</revremark>
+    </revision>
+
+    <revision>
+      <revnumber>1.0</revnumber>
+      <date>2003-04-25</date>
+      <revremark>First release</revremark>
+    </revision>
+  </revhistory>
+
+  <abstract>
+    <para>
+      This book follows on from the Linux From Scratch book. It introduces
+      and guides the reader through additions to the system including
+      networking, graphical interfaces, sound support, and printer and scanner
+      support.
+    </para>
+  </abstract>
+
+</bookinfo><preface><title>Preface</title><sect1 id="bootscripts" xreflabel="blfs-bootscripts-20210826" revision="sysv">
+  <?dbhtml filename="bootscripts.html"?>
+
+  <sect1info>
+    <date>$Date$</date>
+  </sect1info>
+
+  <title>BLFS Boot Scripts</title>
+
+  <indexterm zone="bootscripts" significance="normal">
+    <primary sortas="a-BLFS-Bootscripts">BLFS Bootscripts</primary>
+  </indexterm>
+
+  <indexterm zone="bootscripts" significance="normal">
+    <primary sortas="f-AA-General-Information">General Information</primary>
+  </indexterm>
+
+  <para>The BLFS Bootscripts package contains the init
+  scripts that are used throughout the book. It is assumed that you will be
+  using the BLFS Bootscripts package in conjunction with a compatible
+  LFS-Bootscripts package. Refer to
+  <ulink url="../../../../lfs/view/11.0/chapter09/bootscripts.html"/> for more
+  information on the LFS-Bootscripts package.</para>
+
+  <itemizedlist spacing="compact">
+    <title>Package Information</title>
+    <listitem>
+      <para>Download: <ulink url="https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-20210826.tar.xz"/></para>
+    </listitem>
+  </itemizedlist>
+
+  <para>The BLFS Bootscripts package will be used throughout the BLFS book
+  for startup scripts.  Unlike LFS, each init script has a separate install target
+  in the BLFS Bootscripts package. It is recommended you keep the package source
+  directory around until completion of your BLFS system. When a script is
+  requested from BLFS Bootscripts, simply change to the directory and as the
+  <systemitem class="username" moreinfo="none">root</systemitem> user, execute the given
+  <command moreinfo="none">make install-<replaceable>&lt;init-script&gt;</replaceable></command>
+  command. This command installs the init script to its proper location (along
+  with any auxiliary configuration scripts) and also creates the appropriate
+  symlinks to start and stop the service at the appropriate run-level.</para>
+
+  <note>
+    <para>You should review each bootscript before installation to
+    ascertain that it satisfies your need. Also verify that the start and stop
+    symlinks it creates match your preferences.</para>
+  </note>
+
+  <note>
+    <para>From time to time the bootscripts are updated to accommodate
+    new packages or to make minor corrections.  All versions of the
+    bootscripts are located at <ulink url="https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/"/>.</para>
+  </note>
+
+</sect1></preface><chapter><title>Installing packages in dependency build order</title><sect1 id="gtksourceview4" xreflabel="gtksourceview4-4.8.1">
+  <?dbhtml filename="gtksourceview4.html"?>
+
+  <sect1info>
+    <date>$Date$</date>
+  </sect1info>
+
+  <title>gtksourceview4-4.8.1</title>
+
+  <indexterm zone="gtksourceview4" significance="normal">
+    <primary sortas="a-gtksourceview4">gtksourceview4</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to GtkSourceView</title>
+
+    <para>
+      The <application moreinfo="none">GtkSourceView</application> package contains
+      libraries used for extending the <application moreinfo="none">GTK+</application>
+      text functions to include syntax highlighting.
+    </para>
+
+    <para>This package is known to build and work
+                              properly using an LFS-11.0 platform.</para>
+
+    <bridgehead renderas="sect3">Package Information</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download (HTTP): <ulink url="https://download.gnome.org/sources/gtksourceview/4.8/gtksourceview-4.8.1.tar.xz"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download (FTP): <ulink url="ftp://ftp.acc.umu.se/pub/gnome/sources/gtksourceview/4.8/gtksourceview-4.8.1.tar.xz"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download MD5 sum: d10c624feb48412542f9e3447e75d6bc
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download size: 1.1 MB
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Estimated disk space required: 63 MB (with tests)
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Estimated build time: 0.1 SBU (with tests; both using parallelism=4)
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">Additional Downloads</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Required patch:
+          <ulink url="https://www.linuxfromscratch.org/patches/blfs/11.0/gtksourceview4-4.8.1-buildfix-1.patch"/>
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">GtkSourceView Dependencies</bridgehead>
+
+    <bridgehead renderas="sect4">Required</bridgehead>
+    <para role="required">
+      gtk3 (in full book)
+              
+    </para>
+
+    <bridgehead renderas="sect4">Recommended</bridgehead>
+    <para role="recommended">
+      gobject-introspection (in full book)
+               and
+      libxml2 (in full book)
+              
+    </para>
+
+    <bridgehead renderas="sect4">Optional</bridgehead>
+    <para role="optional">
+      vala (in full book)
+              ,
+      valgrind (in full book)
+              ,
+      gtk-doc (in full book)
+              ,
+      itstool (in full book)
+              ,
+      fop (in full book)
+               (or
+      <ulink url="https://sourceforge.net/projects/dblatex/">dblatex</ulink>),
+      and
+      <ulink url="http://glade.gnome.org/">Glade</ulink>
+    </para>
+
+    <para condition="html" role="usernotes">User Notes:
+      <ulink url="https://wiki.linuxfromscratch.org/blfs/wiki/gtksourceview4"/>
+    </para>
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of GtkSourceView</title>
+
+    <para>
+      First, apply a patch to prevent a race condition:
+    </para>
+
+<screen format="linespecific"><userinput remap="pre" moreinfo="none">patch -Np1 -i ../gtksourceview4-4.8.1-buildfix-1.patch</userinput></screen>
+
+    <para>
+      Install <application moreinfo="none">GtkSourceView</application> by running the
+      following commands:
+    </para>
+
+<screen format="linespecific"><userinput moreinfo="none">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr --buildtype=release .. &amp;&amp;
+ninja</userinput></screen>
+
+    <para>
+      To test the results, issue <command moreinfo="none">ninja test</command>. The tests need
+      to be run in a graphical environment.
+    </para>
+
+    <para>
+      Now, as the <systemitem class="username" moreinfo="none">root</systemitem> user:
+    </para>
+
+<screen role="root" format="linespecific"><userinput moreinfo="none">ninja install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="commands">
+    <title>Command Explanations</title>
+
+    <para>
+      <option>-Dgtk_doc=true</option>: This option is normally
+      used if <application moreinfo="none">GTK-Doc</application> is installed and you wish 
+      to rebuild and install the API documentation.
+    </para>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Library</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>
+          None
+        </seg>
+        <seg>
+          libgtksourceview-4.so
+        </seg>
+        <seg>
+          /usr/{include,share,share/gtk-doc/html}/gtksourceview-4
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libgtksourceview-4">
+        <term><filename class="libraryfile" moreinfo="none">libgtksourceview-4.so</filename></term>
+        <listitem>
+          <para>
+            contains function extensions for the GtkTextView widget
+          </para>
+          <indexterm zone="gtksourceview4 libgtksourceview-4" significance="normal">
+            <primary sortas="c-libgtksourceview-4">libgtksourceview-4.so</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1><sect1 id="libgee" xreflabel="libgee-0.20.4">
+  <?dbhtml filename="libgee.html"?>
+
+  <sect1info>
+    <date>$Date$</date>
+  </sect1info>
+
+  <title>libgee-0.20.4</title>
+
+  <indexterm zone="libgee" significance="normal">
+    <primary sortas="a-libgee">libgee</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to libgee</title>
+
+    <para>
+      The <application moreinfo="none">libgee</application> package is a collection library
+      providing GObject based interfaces and classes for commonly used data
+      structures.
+    </para>
+
+    <para>This package is known to build and work
+                              properly using an LFS-11.0 platform.</para>
+
+    <bridgehead renderas="sect3">Package Information</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download (HTTP): <ulink url="https://download.gnome.org/sources/libgee/0.20/libgee-0.20.4.tar.xz"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download (FTP): <ulink url="ftp://ftp.acc.umu.se/pub/gnome/sources/libgee/0.20/libgee-0.20.4.tar.xz"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download MD5 sum: 4d7d6f1f8054f1b3466c752ac2e50946
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download size: 672 KB
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Estimated disk space required: 42 MB (add 3 MB for tests)
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Estimated build time: 0.1 SBU (using parallelism=4; add 0.1 SBU for tests)
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">libgee Dependencies</bridgehead>
+
+    <bridgehead renderas="sect4">Required</bridgehead>
+    <para role="required">
+      glib2 (in full book)
+              
+    </para>
+
+    <bridgehead renderas="sect4">Recommended</bridgehead>
+    <para role="recommended">
+      gobject-introspection (in full book)
+               and
+      vala (in full book)
+              
+    </para>
+
+    <bridgehead renderas="sect4">Optional</bridgehead>
+    <para role="optional">
+      vala (in full book)
+               (with Valadoc) and
+      <ulink url="http://ltp.sourceforge.net/coverage/lcov.php">LCOV</ulink>
+    </para>
+
+    <para condition="html" role="usernotes">User Notes:
+      <ulink url="https://wiki.linuxfromscratch.org/blfs/wiki/libgee"/>
+    </para>
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of libgee</title>
+
+    <para>
+      Install <application moreinfo="none">libgee</application> by running the following
+      commands:
+    </para>
+
+<screen format="linespecific"><userinput moreinfo="none">./configure --prefix=/usr &amp;&amp;
+make</userinput></screen>
+
+    <para>
+      To test the results, issue: <command moreinfo="none">make check</command>.
+    </para>
+    <!-- For some reason, the tests parallelize themselves and use all
+    cores available, regardless of prior settings in the environment.-->
+
+    <para>
+      Now, as the <systemitem class="username" moreinfo="none">root</systemitem> user:
+    </para>
+
+<screen role="root" format="linespecific"><userinput moreinfo="none">make install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Library</segtitle>
+      <segtitle>Installed Directory</segtitle>
+
+      <seglistitem>
+        <seg>
+          None
+        </seg>
+        <seg>
+          libgee-0.8.so
+        </seg>
+        <seg>
+          /usr/include/gee-0.8
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="libgee-lib">
+        <term><filename class="libraryfile" moreinfo="none">libgee-0.8.so</filename></term>
+        <listitem>
+          <para>
+            contains the <application moreinfo="none">libgee</application> API functions
+          </para>
+          <indexterm zone="libgee libgee-lib" significance="normal">
+            <primary sortas="c-libgee-0.8">libgee-0.8.so</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1><sect1 id="gnome-calculator" xreflabel="gnome-calculator-40.1">
+  <?dbhtml filename="gnome-calculator.html"?>
+
+  <sect1info>
+    <date>$Date$</date>
+  </sect1info>
+
+  <title>gnome-calculator-40.1</title>
+
+  <indexterm zone="gnome-calculator" significance="normal">
+    <primary sortas="a-gnome-calculator">gnome-calculator</primary>
+  </indexterm>
+
+  <sect2 role="package">
+    <title>Introduction to GNOME Calculator</title>
+
+    <para>
+      <application moreinfo="none">GNOME Calculator</application> is a powerful graphical
+      calculator with financial, logical and scientific modes. It uses a
+      multiple precision package to do its arithmetic to give a high degree
+      of accuracy.
+    </para>
+
+    <para>This package is known to build and work
+                              properly using an LFS-11.0 platform.</para>
+
+    <bridgehead renderas="sect3">Package Information</bridgehead>
+    <itemizedlist spacing="compact">
+      <listitem>
+        <para>
+          Download (HTTP): <ulink url="https://download.gnome.org/sources/gnome-calculator/40/gnome-calculator-40.1.tar.xz"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download (FTP): <ulink url="ftp://ftp.acc.umu.se/pub/gnome/sources/gnome-calculator/40/gnome-calculator-40.1.tar.xz"/>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download MD5 sum: 57e05479d89a68a3649aa4bad69a02da
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Download size: 1000 KB
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Estimated disk space required: 36 MB (with tests)
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Estimated build time: 0.4 SBU (with tests)
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <bridgehead renderas="sect3">GNOME Calculator Dependencies</bridgehead>
+
+    <bridgehead renderas="sect4">Required</bridgehead>
+    <para role="required">
+      gtk3 (in full book)
+              ,
+      <xref linkend="gtksourceview4"/>, 
+      itstool (in full book)
+              , 
+      <xref linkend="libgee"/>,
+      libhandy1 (in full book)
+              , and
+      libsoup (in full book)
+              
+    </para>
+
+    <bridgehead renderas="sect4">Recommended</bridgehead>
+    <para role="recommended">
+      vala (in full book)
+              
+    </para>
+
+    <para condition="html" role="usernotes">User Notes:
+      <ulink url="https://wiki.linuxfromscratch.org/blfs/wiki/gnome-calculator"/>
+    </para>
+  </sect2>
+
+  <sect2 role="installation">
+    <title>Installation of GNOME Calculator</title>
+
+<!-- Should not be needed with next version -->
+<!-- <para>
+      First apply an upstream fix to prevent a type mismatch flagged as an
+      error by vala-0.44.x:
+    </para>
+
+<screen><userinput>sed -e 's/token_list\.copy()/token_list.copy_deep((CopyFunc) Object.ref)/' \
+   -i lib/equation-parser.vala</userinput></screen> -->
+
+    <para>
+      Install <application moreinfo="none">GNOME Calculator</application> by running
+      the following commands:
+    </para>
+
+<screen format="linespecific"><userinput moreinfo="none">mkdir build &amp;&amp;
+cd    build &amp;&amp;
+
+meson --prefix=/usr --buildtype=release .. &amp;&amp;
+ninja</userinput></screen>
+
+    <para>
+      To test the results, issue: <command moreinfo="none">ninja test</command>.
+    </para>
+
+    <para>
+      Now, as the <systemitem class="username" moreinfo="none">root</systemitem> user:
+    </para>
+
+<screen role="root" format="linespecific"><userinput moreinfo="none">ninja install</userinput></screen>
+
+  </sect2>
+
+  <sect2 role="content">
+    <title>Contents</title>
+
+    <segmentedlist>
+      <segtitle>Installed Programs</segtitle>
+      <segtitle>Installed Library</segtitle>
+      <segtitle>Installed Directories</segtitle>
+
+      <seglistitem>
+        <seg>
+          gcalccmd and gnome-calculator
+        </seg>
+        <seg>
+          libgcalc-2.so and libgci-1.so
+        </seg>
+        <seg>
+          /usr/include/gcalc-2,
+          /usr/include/gci-2,
+          /usr/share/devhelp/books/{GCalc-2,GCi-1}, and
+          /usr/share/help/*/gnome-calculator
+        </seg>
+      </seglistitem>
+    </segmentedlist>
+
+    <variablelist>
+      <bridgehead renderas="sect3">Short Descriptions</bridgehead>
+      <?dbfo list-presentation="list"?>
+      <?dbhtml list-presentation="table"?>
+
+      <varlistentry id="gnome-calculator-prog">
+        <term><command moreinfo="none">gnome-calculator</command></term>
+        <listitem>
+          <para>
+            is the official calculator of the
+            <application moreinfo="none">GNOME</application> Desktop
+          </para>
+          <indexterm zone="gnome-calculator gnome-calculator-prog" significance="normal">
+            <primary sortas="b-gnome-calculator">gnome-calculator</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="gcalccmd">
+        <term><command moreinfo="none">gcalccmd</command></term>
+        <listitem>
+          <para>
+            is a command line version of
+            <application moreinfo="none">gnome-calculator</application>
+          </para>
+          <indexterm zone="gnome-calculator gcalccmd" significance="normal">
+            <primary sortas="b-gcalccmd">gcalccmd</primary>
+          </indexterm>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </sect2>
+
+</sect1></chapter><appendix id="CC" xreflabel="Creative Commons License" xml:base="appendices/creat-comm.xml">
+  <?dbhtml filename="creat-comm.html" dir="appendices"?>
+
+  <appendixinfo>
+    <date>$Date$</date>
+  </appendixinfo>
+
+  <title>Creative Commons License</title>
+
+  <para role="title">
+    Creative Commons Legal Code
+  </para>
+
+  <para role="title">
+    Attribution-NonCommercial-ShareAlike 2.0
+  </para>
+
+  <important>
+    <para>
+      CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+      LEGAL SERVICES. DISTRIBUTION OF THIS LICENSE DOES NOT CREATE AN
+      ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+      INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+      REGARDING THE INFORMATION PROVIDED, AND DISCLAIMS LIABILITY FOR DAMAGES
+      RESULTING FROM ITS USE.
+    </para>
+  </important>
+
+  <para role="title">
+    License
+  </para>
+
+  <para>
+    THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE
+    COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY
+    COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF THE WORK OTHER THAN AS
+    AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS PROHIBITED.
+  </para>
+
+  <para>
+    BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE
+    TO BE BOUND BY THE TERMS OF THIS LICENSE. THE LICENSOR GRANTS YOU THE
+    RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH TERMS
+    AND CONDITIONS.
+  </para>
+
+  <orderedlist inheritnum="ignore" continuation="restarts">
+    <?dbfo label-width="1.5em"?>
+    <listitem>
+      <para>
+        Definitions
+      </para>
+
+      <orderedlist inheritnum="ignore" continuation="restarts">
+        <listitem>
+          <para>
+            "Collective Work" means a work, such as a periodical issue,
+            anthology or encyclopedia, in which the Work in its entirety in
+            unmodified form, along with a number of other contributions,
+            constituting separate and independent works in themselves,
+            are assembled into a collective whole. A work that constitutes a
+            Collective Work will not be considered a Derivative Work (as
+            defined below) for the purposes of this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            "Derivative Work" means a work based upon the Work or upon the
+            Work and other pre-existing works, such as a translation, musical
+            arrangement, dramatization, fictionalization, motion picture
+            version, sound recording, art reproduction, abridgment,
+            condensation, or any other form in which the Work may be recast,
+            transformed, or adapted, except that a work that constitutes a
+            Collective Work will not be considered a Derivative Work for the
+            purpose of this License. For the avoidance of doubt, where the
+            Work is a musical composition or sound recording, the
+            synchronization of the Work in timed-relation with a moving image
+            ("synching") will be considered a Derivative Work for the purpose
+            of this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            "Licensor" means the individual or entity that offers the
+            Work under the terms of this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            "Original Author" means the individual or entity who created
+            the Work.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            "Work" means the copyrightable work of authorship offered
+            under the terms of this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            "You" means an individual or entity exercising rights under this
+            License who has not previously violated the terms of this License
+            with respect to the Work, or who has received express permission
+            from the Licensor to exercise rights under this License despite a
+            previous violation.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            "License Elements" means the following high-level license
+            attributes as selected by Licensor and indicated in the title of
+            this License: Attribution, Noncommercial, ShareAlike.
+          </para>
+        </listitem>
+
+      </orderedlist>
+    </listitem>
+
+    <listitem>
+      <para>
+        Fair Use Rights. Nothing in this license is intended to reduce, limit,
+        or restrict any rights arising from fair use, first sale or other
+        limitations on the exclusive rights of the copyright owner under
+        copyright law or other applicable laws.
+      </para>
+    </listitem>
+
+
+    <listitem>
+      <para>
+        License Grant. Subject to the terms and conditions of this License,
+        Licensor hereby grants You a worldwide, royalty-free, non-exclusive,
+        perpetual (for the duration of the applicable copyright) license to
+        exercise the rights in the Work as stated below:
+      </para>
+
+      <orderedlist inheritnum="ignore" continuation="restarts">
+
+        <listitem>
+          <para>
+            to reproduce the Work, to incorporate the Work into one or more
+            Collective Works, and to reproduce the Work as incorporated in the
+            Collective Works;
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            to create and reproduce Derivative Works;
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            to distribute copies or phonorecords of, display publicly, perform
+            publicly, and perform publicly by means of a digital audio
+            transmission the Work including as incorporated in Collective
+            Works;
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            to distribute copies or phonorecords of, display publicly,
+            perform publicly, and perform publicly by means of a digital audio
+            transmission Derivative Works;
+          </para>
+        </listitem>
+
+      </orderedlist>
+
+      <para>
+        The above rights may be exercised in all media and formats whether now
+        known or hereafter devised. The above rights include the right to make
+        such modifications as are technically necessary to exercise the rights
+        in other media and formats. All rights not expressly granted by
+        Licensor are hereby reserved, including but not limited to the rights
+        set forth in Sections 4(e) and 4(f).
+      </para>
+    </listitem>
+
+    <listitem>
+      <para>
+        Restrictions.The license granted in Section 3 above is
+        expressly made subject to and limited by the following
+        restrictions:
+      </para>
+
+      <orderedlist inheritnum="ignore" continuation="restarts">
+
+        <listitem>
+          <para>
+            You may distribute, publicly display, publicly perform, or publicly
+            digitally perform the Work only under the terms of this License,
+            and You must include a copy of, or the Uniform Resource Identifier
+            for, this License with every copy or phonorecord of the Work You
+            distribute, publicly display, publicly perform, or publicly
+            digitally perform. You may not offer or impose any terms on the
+            Work that alter or restrict the terms of this License or the
+            recipients' exercise of the rights granted hereunder. You may not
+            sublicense the Work. You must keep intact all notices that refer
+            to this License and to the disclaimer of warranties. You may not
+            distribute, publicly display, publicly perform, or publicly
+            digitally perform the Work with any technological measures that
+            control access or use of the Work in a manner inconsistent with
+            the terms of this License Agreement. The above applies to the Work
+            as incorporated in a Collective Work, but this does not require
+            the Collective Work apart from the Work itself to be made subject
+            to the terms of this License. If You create a Collective Work,
+            upon notice from any Licensor You must, to the extent practicable,
+            remove from the Collective Work any reference to such Licensor or
+            the Original Author, as requested. If You create a Derivative Work,
+            upon notice from any Licensor You must, to the extent practicable,
+            remove from the Derivative Work any reference to such Licensor or
+            the Original Author, as requested.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            You may distribute, publicly display, publicly perform, or publicly
+            digitally perform a Derivative Work only under the terms of this
+            License, a later version of this License with the same License
+            Elements as this License, or a Creative Commons iCommons license
+            that contains the same License Elements as this License (e.g.
+            Attribution-NonCommercial-ShareAlike 2.0 Japan). You must include
+            a copy of, or the Uniform Resource Identifier for, this License or
+            other license specified in the previous sentence with every copy
+            or phonorecord of each Derivative Work You distribute, publicly
+            display, publicly perform, or publicly digitally perform. You may
+            not offer or impose any terms on the Derivative Works that alter
+            or restrict the terms of this License or the recipients' exercise
+            of the rights granted hereunder, and You must keep intact all
+            notices that refer to this License and to the disclaimer of
+            warranties. You may not distribute, publicly display, publicly
+            perform, or publicly digitally perform the Derivative Work with
+            any technological measures that control access or use of the Work
+            in a manner inconsistent with the terms of this License Agreement.
+            The above applies to the Derivative Work as incorporated in a
+            Collective Work, but this does not require the Collective Work
+            apart from the Derivative Work itself to be made subject to the
+            terms of this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            You may not exercise any of the rights granted to You in Section 3
+            above in any manner that is primarily intended for or directed
+            toward commercial advantage or private monetary compensation. The
+            exchange of the Work for other copyrighted works by means of
+            digital file-sharing or otherwise shall not be considered to be
+            intended for or directed toward commercial advantage or private
+            monetary compensation, provided there is no payment of any monetary
+            compensation in connection with the exchange of copyrighted works.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            If you distribute, publicly display, publicly perform, or publicly
+            digitally perform the Work or any Derivative Works or Collective
+            Works, You must keep intact all copyright notices for the Work and
+            give the Original Author credit reasonable to the medium or means
+            You are utilizing by conveying the name (or pseudonym if
+            applicable) of the Original Author if supplied; the title of the
+            Work if supplied; to the extent reasonably practicable, the Uniform
+            Resource Identifier, if any, that Licensor specifies to be
+            associated with the Work, unless such URI does not refer to the
+            copyright notice or licensing information for the Work; and in the
+            case of a Derivative Work, a credit identifying the use of the Work
+            in the Derivative Work (e.g., "French translation of the Work by
+            Original Author," or "Screenplay based on original Work by Original
+            Author"). Such credit may be implemented in any reasonable manner;
+            provided, however, that in the case of a Derivative Work or
+            Collective Work, at a minimum such credit will appear where any
+            other comparable authorship credit appears and in a manner at least
+            as prominent as such other comparable authorship credit.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            For the avoidance of doubt, where the Work is a musical
+            composition:
+          </para>
+
+          <orderedlist inheritnum="ignore" continuation="restarts">
+
+            <listitem>
+              <para>
+                Performance Royalties Under Blanket Licenses. Licensor reserves
+                the exclusive right to collect, whether individually or via a
+                performance rights society (e.g. ASCAP, BMI, SESAC), royalties
+                for the public performance or public digital performance (e.g.
+                webcast) of the Work if that performance is primarily intended
+                for or directed toward commercial advantage or private monetary
+                compensation.
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>
+                Mechanical Rights and Statutory Royalties. Licensor reserves
+                the exclusive right to collect, whether individually or via a
+                music rights agency or designated agent (e.g. Harry Fox
+                Agency), royalties    for any phonorecord You create from the
+                Work ("cover version") and distribute, subject to the
+                compulsory license created by 17 USC Section 115 of the US
+                Copyright Act (or the equivalent in other jurisdictions), if
+                Your distribution of such cover version is primarily intended
+                for or directed toward commercial advantage or private monetary
+                compensation.  6. Webcasting Rights and Statutory Royalties.
+                For the avoidance of doubt, where the Work is a sound
+                recording, Licensor reserves the exclusive right to collect,
+                whether individually or via a performance-rights society (e.g.
+                SoundExchange), royalties for the public digital performance
+                (e.g. webcast) of the Work, subject to the compulsory license
+                created by 17 USC Section 114 of the US Copyright Act (or the
+                equivalent in other jurisdictions), if Your public digital
+                performance is primarily intended for or directed toward
+                commercial advantage or private monetary compensation.
+              </para>
+            </listitem>
+
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para>
+            Webcasting Rights and Statutory Royalties. For the avoidance of
+            doubt, where the Work is a sound recording, Licensor reserves the
+            exclusive right to collect, whether individually or via a
+            performance-rights society (e.g.  SoundExchange), royalties for
+            the public digital performance (e.g. webcast) of the Work, subject
+            to the compulsory license created by 17 USC Section 114 of the US
+            Copyright Act (or the equivalent in other jurisdictions), if Your
+            public digital performance is primarily intended for or directed
+            toward commercial advantage or private monetary compensation.
+          </para>
+        </listitem>
+
+      </orderedlist>
+    </listitem>
+
+    <listitem>
+      <para>
+        Representations, Warranties and Disclaimer
+      </para>
+
+      <para>
+        UNLESS OTHERWISE MUTUALLY AGREED TO BY THE PARTIES IN WRITING, LICENSOR
+        OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY
+        KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE,
+        INCLUDING, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTIBILITY,
+        FITNESS FOR A PARTICULAR PURPOSE, NONINFRINGEMENT, OR THE ABSENCE OF
+        LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF ABSENCE OF
+        ERRORS, WHETHER OR NOT DISCOVERABLE.  SOME JURISDICTIONS DO NOT ALLOW
+        THE EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY NOT APPLY
+        TO YOU.
+      </para>
+    </listitem>
+
+    <listitem>
+      <para>
+        Limitation on Liability. EXCEPT TO THE EXTENT REQUIRED BY APPLICABLE
+        LAW, IN NO EVENT WILL LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY
+        FOR ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY
+        DAMAGES ARISING OUT OF THIS LICENSE OR THE USE OF THE WORK, EVEN IF
+        LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+      </para>
+    </listitem>
+
+    <listitem>
+      <para>
+        Termination
+      </para>
+
+      <orderedlist inheritnum="ignore" continuation="restarts">
+
+        <listitem>
+          <para>
+            This License and the rights granted hereunder will terminate
+            automatically upon any breach by You of the terms of this License.
+            Individuals or entities who have received Derivative Works or
+            Collective Works from You under this License, however, will not
+            have their licenses terminated provided such individuals or
+            entities remain in full compliance with those licenses. Sections 1,
+            2, 5, 6, 7, and 8 will survive any termination of this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            Subject to the above terms and conditions, the license granted
+             here is perpetual (for the duration of the applicable copyright
+             in the Work).  Notwithstanding the above, Licensor reserves the
+             right to release the Work under different license terms or to
+             stop distributing the Work at any time; provided, however that
+             any such election will not serve to withdraw this License (or any
+             other license that has been, or is required to be, granted under
+             the terms of this License), and this License will continue in
+             full force and effect unless terminated as stated above.
+          </para>
+        </listitem>
+
+      </orderedlist>
+    </listitem>
+
+    <listitem>
+      <para>
+        Miscellaneous
+      </para>
+
+      <orderedlist inheritnum="ignore" continuation="restarts">
+
+        <listitem>
+          <para>
+            Each time You distribute or publicly digitally perform the Work or
+            a Collective Work, the Licensor offers to the recipient a license
+            to the Work on the same terms and conditions as the license granted
+            to You under this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            Each time You distribute or publicly digitally perform a Derivative
+            Work, Licensor offers to the recipient a license to the original
+            Work on the same terms and conditions as the license granted to
+            You under this License.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            If any provision of this License is invalid or unenforceable under
+            applicable law, it shall not affect the validity or enforceability
+            of the remainder of the terms of this License, and without further
+            action by the parties to this agreement, such provision shall be
+            reformed to the minimum extent necessary to make such provision
+            valid and enforceable.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            No term or provision of this License shall be deemed waived and no
+            breach consented to unless such waiver or consent shall be in
+            writing and signed by the party to be charged with such waiver or
+            consent.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            This License constitutes the entire agreement between the parties
+            with respect to the Work licensed here. There are no
+            understandings, agreements or representations with respect to the
+            Work not specified here.  Licensor shall not be bound by any
+            additional provisions that may appear in any communication from
+            You. This License may not be modified without the mutual written
+            agreement of the Licensor and You.
+          </para>
+        </listitem>
+
+
+      </orderedlist>
+    </listitem>
+  </orderedlist>
+
+  <important>
+    <para>
+      Creative Commons is not a party to this License, and makes no warranty
+      whatsoever in connection with the Work. Creative Commons will not be
+      liable to You or any party on any legal theory for any damages
+      whatsoever, including without limitation any general, special, incidental
+      or consequential damages arising in connection to this license.
+      Notwithstanding the foregoing two (2) sentences, if Creative Commons has
+      expressly identified itself as the Licensor hereunder, it shall have all
+      rights and obligations of Licensor.
+    </para>
+
+    <para>
+      Except for the limited purpose of indicating to the public that the Work
+      is licensed under the CCPL, neither party will use the trademark
+      "Creative Commons" or any related trademark or logo of Creative Commons
+      without the prior written consent of Creative Commons. Any permitted use
+      will be in compliance with Creative Commons' then-current trademark
+      usage guidelines, as may be published on its website or otherwise made
+      available upon request from time to time.
+    </para>
+
+    <para>
+      Creative Commons may be contacted at <ulink url="http://creativecommons.org/"/>.
+    </para>
+  </important>
+
+</appendix><appendix id="MIT" xreflabel="MIT License" xml:base="appendices/mit-lic.xml">
+  <?dbhtml filename="mit.html" ?>
+
+  <appendixinfo>
+    <date>$Date$</date>
+  </appendixinfo>
+
+  <title>The MIT License</title>
+
+  <para>
+    Copyright © 2001-2021 The BLFS Development Team
+  </para>
+
+  <para>
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+  </para>
+
+  <para>
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+  </para>
+
+  <para>
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+  </para>
+
+</appendix><index/></book>

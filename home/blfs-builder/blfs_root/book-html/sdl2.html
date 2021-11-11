@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /><title>SDL2-2.0.16</title><link rel="stylesheet" type="text/css" href="stylesheets/lfs.css" /><meta name="generator" content="DocBook XSL-NS Stylesheets Vsnapshot" /><link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css" media="print" /></head><body class="blfs" id="blfs-11.0"><div class="navheader"><h4>Beyond Linux<sup>®</sup> From Scratch 
+  
+  <span class="phrase">(System V</span> Edition) - Version 11.0</h4><h3>Chapter 1. Installing packages in dependency build order</h3><ul><li class="prev"><a accesskey="p" href="libxkbcommon.html" title="libxkbcommon-1.3.0">Prev</a><p>libxkbcommon-1.3.0</p></li><li class="next"><a accesskey="n" href="ffmpeg.html" title="FFmpeg-4.4">Next</a><p>FFmpeg-4.4</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div><div class="sect1" lang="en" xml:lang="en"><h1 class="sect1"><a id="sdl2" name="sdl2"></a>SDL2-2.0.16</h1><div class="package" lang="en" xml:lang="en"><h2 class="sect2">Introduction to SDL2</h2><p>
+      The Simple DirectMedia Layer Version 2 (<span class="application">SDL2</span>
+      for short) is a cross-platform library designed to make it easy to write
+      multimedia software, such as games and emulators.
+    </p><p>This package is known to build and work
+                              properly using an LFS-11.0 platform.</p><h3>Package Information</h3><div class="itemizedlist"><ul class="compact"><li class="listitem"><p>
+          Download (HTTP): <a class="ulink" href="https://www.libsdl.org/release/SDL2-2.0.16.tar.gz">https://www.libsdl.org/release/SDL2-2.0.16.tar.gz</a>
+        </p></li><li class="listitem"></li><li class="listitem"><p>
+          Download MD5 sum: 98b8a1535a757ea1d03ae44e2fb20247
+        </p></li><li class="listitem"><p>
+          Download size: 6.9 MB
+        </p></li><li class="listitem"><p>
+          Estimated disk space required: 132 MB (with docs)
+        </p></li><li class="listitem"><p>
+          Estimated build time: 0.4 SBU (using parallelism=4; with docs)
+        </p></li></ul></div><h3>Additional Downloads</h3><div class="itemizedlist"><ul class="compact"><li class="listitem"><p>
+          Required patch (for i686 systems):
+           <a class="ulink" href="https://www.linuxfromscratch.org/patches/blfs/11.0/SDL2-2.0.16-opengl_include_fix-1.patch">https://www.linuxfromscratch.org/patches/blfs/11.0/SDL2-2.0.16-opengl_include_fix-1.patch</a>
+        </p></li></ul></div><h3>SDL2 Dependencies</h3><h4>Recommended</h4><p class="recommended">
+      <a class="xref" href="libxkbcommon.html" title="libxkbcommon-1.3.0">libxkbcommon-1.3.0</a>,
+      wayland-protocols (in full book)
+              , and
+      xorg7-lib (in full book)
+               (if those are not present, the corresponding modules are not built)
+    </p><h4>Optional</h4><p class="optional">
+      alsa (in full book)
+              ,
+      doxygen (in full book)
+               (to create documentation),
+      ibus (in full book)
+              ,
+      <a class="xref" href="nasm.html" title="NASM-2.15.05">NASM-2.15.05</a>,
+      pulseaudio (in full book)
+              ,
+      libsamplerate (in full book)
+              ,
+      x-window-system (in full book)
+              ,
+      <a class="ulink" href="http://pkgs.fedoraproject.org/repo/pkgs/directfb/">DirectFB</a>, and
+      <a class="ulink" href="https://fcitx-im.org/">fcitx</a>
+    </p><p class="usernotes">User Notes:
+    <a class="ulink" href="https://wiki.linuxfromscratch.org/blfs/wiki/sdl">https://wiki.linuxfromscratch.org/blfs/wiki/sdl</a></p></div><div class="installation" lang="en" xml:lang="en"><h2 class="sect2">Installation of SDL2</h2><p>
+      First, if you are building on a 32-bit i686 system, apply a patch
+      containing a fix for the OpenGL headers and their data types:
+    </p><pre class="userinput"><kbd class="command">case $(uname -m) in
+   i?86) patch -Np1 -i ../SDL2-2.0.16-opengl_include_fix-1.patch ;;
+esac</kbd></pre><p>
+      Install <span class="application">SDL2</span> by running the
+      following commands:
+    </p><pre class="userinput"><kbd class="command">./configure --prefix=/usr &amp;&amp;
+make</kbd></pre><p>
+      If you have doxygen (in full book)
+               installed and want to build the
+      html documentation, run the following commands:
+    </p><pre class="userinput"><kbd class="command">pushd docs  &amp;&amp;
+  doxygen   &amp;&amp;
+popd</kbd></pre><div class="admon note"><img alt="[Note]" src="images/note.png" /><h3>Note</h3><p>
+        If you wish to build and run the package regression
+        tests, do not delete the static libraries below until after
+        the tests are built.
+      </p></div><p>
+      Now, as the <code class="systemitem">root</code> user:
+    </p><pre class="root"><kbd class="command">make install              &amp;&amp;
+rm -v /usr/lib/libSDL2*.a</kbd></pre><p>
+      If you built the documentation, install it as the <code class="systemitem">root</code> user:
+    </p><pre class="root"><kbd class="command">install -v -m755 -d        /usr/share/doc/SDL2-2.0.16/html &amp;&amp;
+cp -Rv  docs/output/html/* /usr/share/doc/SDL2-2.0.16/html</kbd></pre></div><div class="commands" lang="en" xml:lang="en"><h2 class="sect2">Command Explanations</h2><p>
+      <span class="command"><strong>rm -v /usr/lib/libSDL2*.a</strong></span>: Normally 
+      static libraries can be disabled with a <code class="option">--disable-static</code>
+      option to configure, but that breaks the build in this package.
+    </p><p>
+      <code class="option">--disable-alsa-shared</code>: This switch disables
+      dynamically loading ALSA shared libraries.
+    </p><p>
+      <code class="option">--disable-sdl-dlopen</code>: This switch disables using
+      dlopen for shared object loading. Loading image backend libraries like
+      libpng dynamically on the fly does not work.
+    </p><p>
+      <code class="option">--disable-x11-shared</code>: This switch disables
+      dynamically loading X11 shared libraries.
+    </p></div><div class="configuration" lang="en" xml:lang="en"><h2 class="sect2">Configuring SDL2</h2><div class="sect3" lang="en" xml:lang="en"><h3 class="sect3"><h4 class="title"><a id="idm139996762335040"></a>Configuration Information</h4></h3><p>As with most libraries, there is no configuration to do, save that the
+library directory, i.e., <code class="filename">/opt/lib</code> or
+<code class="filename">/usr/local/lib</code> should appear in
+<code class="filename">/etc/ld.so.conf</code> so that <span class="command"><strong>ldd</strong></span> can find
+the shared libraries.  After checking that this is the case,
+<span class="command"><strong>/sbin/ldconfig</strong></span> should be run while logged in as
+<code class="systemitem">root</code>.</p></div></div><div class="content" lang="en" xml:lang="en"><h2 class="sect2">Contents</h2><div class="segmentedlist"><div class="seglistitem"><div class="seg"><strong class="segtitle">Installed Program: </strong><span class="segbody">sdl2-config</span></div><div class="seg"><strong class="segtitle">Installed Libraries: </strong><span class="segbody">libSDL2.so</span></div><div class="seg"><strong class="segtitle">Installed Directories: </strong><span class="segbody">/usr/include/SDL2 and 
+             /usr/share/doc/SDL-2.0.16</span></div></div></div><div class="variablelist"><h3>Short Descriptions</h3><table border="0" class="variablelist"><colgroup><col align="left" valign="top" /><col /></colgroup><tbody><tr><td><p><a id="sdl2-config"></a><span class="term"><span class="command"><strong>sdl2-config</strong></span></span></p></td><td><p>
+            determines the compile and linker flags that should be used to
+            compile and link programs that use
+            <code class="filename">libSDL2</code>
+          </p></td></tr><tr><td><p><a id="libsdl2"></a><span class="term"><code class="filename">libSDL2.so</code></span></p></td><td><p>
+            contains functions that provide low level access to audio,
+            keyboard, mouse, joystick, 3D hardware via OpenGL, and
+            2D frame buffer across multiple platforms
+          </p></td></tr></tbody></table></div></div><p class="updated">Last updated 
+      on
+      </p></div><div class="navfooter"><ul><li class="prev"><a accesskey="p" href="libxkbcommon.html" title="libxkbcommon-1.3.0">Prev</a><p>libxkbcommon-1.3.0</p></li><li class="next"><a accesskey="n" href="ffmpeg.html" title="FFmpeg-4.4">Next</a><p>FFmpeg-4.4</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div></body></html>

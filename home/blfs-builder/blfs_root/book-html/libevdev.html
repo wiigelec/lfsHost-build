@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /><title>libevdev 1.11.0</title><link rel="stylesheet" type="text/css" href="stylesheets/lfs.css" /><meta name="generator" content="DocBook XSL-NS Stylesheets Vsnapshot" /><link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css" media="print" /></head><body class="blfs" id="blfs-11.0"><div class="navheader"><h4>Beyond Linux<sup>®</sup> From Scratch 
+  
+  <span class="phrase">(System V</span> Edition) - Version 11.0</h4><h3>Chapter 1. Installing packages in dependency build order</h3><ul><li class="prev"><a accesskey="p" href="xterm.html" title="xterm-368">Prev</a><p>xterm-368</p></li><li class="next"><a accesskey="n" href="mtdev.html" title="mtdev-1.1.6">Next</a><p>mtdev-1.1.6</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div><div class="sect1" lang="en" xml:lang="en"><h1 class="sect1"><a id="libevdev" name="libevdev"></a>libevdev 1.11.0</h1><div class="package" lang="en" xml:lang="en"><h2 class="sect2">Introduction to libevdev</h2><p>
+        The <span class="application">libevdev</span> package contains common
+        functions for Xorg input drivers.
+      </p><p>This package is known to build and work
+                              properly using an LFS-11.0 platform.</p><h3>Package Information</h3><div class="itemizedlist"><ul class="compact"><li class="listitem"><p>
+            Download (HTTP): <a class="ulink" href="https://www.freedesktop.org/software/libevdev/libevdev-1.11.0.tar.xz">https://www.freedesktop.org/software/libevdev/libevdev-1.11.0.tar.xz</a>
+          </p></li><li class="listitem"></li><li class="listitem"><p>
+            Download MD5 sum: b09838ec120dabeebc08fa6a1943594f
+          </p></li><li class="listitem"><p>
+            Download size: 436 KB
+          </p></li><li class="listitem"><p>
+            Estimated disk space required: 9.1 MB (with tests)
+          </p></li><li class="listitem"><p>
+            Estimated build time: 0.2 SBU (with tests)
+          </p></li></ul></div><h3>libevdev Dependencies</h3><h4>Optional</h4><p class="optional">
+        doxygen (in full book)
+           and
+        valgrind (in full book)
+           (optional for tests)
+      </p><p class="usernotes">
+        User Notes: <a class="ulink" href="https://wiki.linuxfromscratch.org/blfs/wiki/libevdev">https://wiki.linuxfromscratch.org/blfs/wiki/libevdev</a>
+      </p></div><div class="kernel" lang="en" xml:lang="en"><h2 class="sect2">Kernel Configuration</h2><p>
+      Enable the following options in the kernel configuration and recompile the
+      kernel if necessary:
+    </p><pre class="screen"><code class="literal">Device Drivers  ---&gt;
+  Input device support ---&gt;
+    &lt;*&gt; Generic input layer (needed for keyboard, mouse, ...) [CONFIG_INPUT]
+    &lt;*&gt;   Event interface                   [CONFIG_INPUT_EVDEV]
+    [*]   Miscellaneous devices  ---&gt;       [CONFIG_INPUT_MISC]
+      &lt;*&gt;    User level driver support      [CONFIG_INPUT_UINPUT]</code></pre></div><div class="installation" lang="en" xml:lang="en"><h2 class="sect2">Installation of libevdev</h2><p>
+        Install <span class="application">libevdev</span> by running the following
+        commands:
+      </p><pre class="userinput"><kbd class="command">./configure $XORG_CONFIG &amp;&amp;
+make</kbd></pre><p>
+        The regression tests can be run as the <code class="systemitem">root</code> user with <span class="command"><strong>make
+        check</strong></span>, in a graphical session. Note that on some systems, the
+        tests may cause a hard lockup and require a reboot. On laptops, the
+        system will go into Sleep and need to be woken up to finish the test
+        suites.
+      </p><p>
+        Now, as the <code class="systemitem">root</code> user:
+      </p><pre class="root"><kbd class="command">make install</kbd></pre></div><div class="content" lang="en" xml:lang="en"><h2 class="sect2">Contents</h2><div class="segmentedlist"><div class="seglistitem"><div class="seg"><strong class="segtitle">Installed Xorg Programs: </strong><span class="segbody">
+            libevdev-tweak-device, mouse-dpi-tool, and touchpad-edge-detector
+          </span></div><div class="seg"><strong class="segtitle">Installed Xorg Library: </strong><span class="segbody">
+            libevdev.so
+          </span></div><div class="seg"><strong class="segtitle">Installed Xorg Directory: </strong><span class="segbody">
+            $XORG_PREFIX/include/libevdev-1.0
+          </span></div></div></div><div class="variablelist"><h4>Short Descriptions</h4><table border="0" class="variablelist"><colgroup><col align="left" valign="top" /><col /></colgroup><tbody><tr><td><p><a id="libevdev-tweak-device"></a><span class="term"><span class="command"><strong>libevdev-tweak-device</strong></span></span></p></td><td><p>
+              is a tool to change some kernel device properties
+            </p></td></tr><tr><td><p><a id="mouse-dpi-tool"></a><span class="term"><span class="command"><strong>mouse-dpi-tool</strong></span></span></p></td><td><p>
+              is a tool to estimate the resolution of a mouse
+            </p></td></tr><tr><td><p><a id="touchpad-edge-detector"></a><span class="term"><span class="command"><strong>touchpad-edge-detector</strong></span></span></p></td><td><p>
+              touchpad-edge-detector is a tool that reads the touchpad events
+              from the kernel and calculates the minimum and maximum for the x
+              and y coordinates, respectively
+            </p></td></tr><tr><td><p><a id="libevdev-lib"></a><span class="term"><code class="filename">libevdev.so</code></span></p></td><td><p>
+              is a library of Xorg driver input functions
+            </p></td></tr></tbody></table></div></div></div><div class="navfooter"><ul><li class="prev"><a accesskey="p" href="xterm.html" title="xterm-368">Prev</a><p>xterm-368</p></li><li class="next"><a accesskey="n" href="mtdev.html" title="mtdev-1.1.6">Next</a><p>mtdev-1.1.6</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div></body></html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /><title>gnome-keyring-40.0</title><link rel="stylesheet" type="text/css" href="stylesheets/lfs.css" /><meta name="generator" content="DocBook XSL-NS Stylesheets Vsnapshot" /><link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css" media="print" /></head><body class="blfs" id="blfs-11.0"><div class="navheader"><h4>Beyond Linux<sup>®</sup> From Scratch 
+  
+  <span class="phrase">(System V</span> Edition) - Version 11.0</h4><h3>Chapter 1. Installing packages in dependency build order</h3><ul><li class="prev"><a accesskey="p" href="openssh.html" title="OpenSSH-8.7p1">Prev</a><p>OpenSSH-8.7p1</p></li><li class="next"><a accesskey="n" href="appendices/creat-comm.html" title="Creative Commons License">Next</a><p>Creative Commons License</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div><div class="sect1" lang="en" xml:lang="en"><h1 class="sect1"><a id="gnome-keyring" name="gnome-keyring"></a>gnome-keyring-40.0</h1><div class="package" lang="en" xml:lang="en"><h2 class="sect2">Introduction to GNOME Keyring</h2><p>
+      The <span class="application">GNOME Keyring</span> package contains a
+      daemon that keeps passwords and other secrets for users.
+    </p><p>This package is known to build and work
+                              properly using an LFS-11.0 platform.</p><h3>Package Information</h3><div class="itemizedlist"><ul class="compact"><li class="listitem"><p>
+          Download (HTTP): <a class="ulink" href="https://download.gnome.org/sources/gnome-keyring/40/gnome-keyring-40.0.tar.xz">https://download.gnome.org/sources/gnome-keyring/40/gnome-keyring-40.0.tar.xz</a>
+        </p></li><li class="listitem"><p>
+          Download (FTP): <a class="ulink" href="ftp://ftp.acc.umu.se/pub/gnome/sources/gnome-keyring/40/gnome-keyring-40.0.tar.xz">ftp://ftp.acc.umu.se/pub/gnome/sources/gnome-keyring/40/gnome-keyring-40.0.tar.xz</a>
+        </p></li><li class="listitem"><p>
+          Download MD5 sum: f404b61683a0ff54fb264b337772cff2
+        </p></li><li class="listitem"><p>
+          Download size: 1.3 MB
+        </p></li><li class="listitem"><p>
+          Estimated disk space required: 155 MB
+        </p></li><li class="listitem"><p>
+          Estimated build time: 0.2 SBU (Using parallelism=4; add 0.3 SBU for tests)
+        </p></li></ul></div><h3>GNOME Keyring Dependencies</h3><h4>Required</h4><p class="required">
+      dbus (in full book)
+               and
+      gcr (in full book)
+              
+    </p><h4>Recommended</h4><p class="recommended">
+      linux-pam (in full book)
+              ,
+      libxslt (in full book)
+              , and
+      <a class="xref" href="openssh.html" title="OpenSSH-8.7p1">OpenSSH-8.7p1</a>
+    </p><h4>Optional</h4><p class="optional">
+      <a class="ulink" href="http://ltp.sourceforge.net/coverage/lcov.php">LCOV</a>,
+      <a class="ulink" href="http://people.redhat.com/sgrubb/libcap-ng/">libcap-ng</a>,
+      gnupg2 (in full book)
+              , and
+      valgrind (in full book)
+              
+    </p><p class="usernotes">User Notes:
+      <a class="ulink" href="https://wiki.linuxfromscratch.org/blfs/wiki/gnome-keyring">https://wiki.linuxfromscratch.org/blfs/wiki/gnome-keyring</a>
+    </p></div><div class="installation" lang="en" xml:lang="en"><h2 class="sect2">Installation of GNOME Keyring</h2><p>
+      Install <span class="application">GNOME Keyring</span> by running the
+      following commands:
+    </p><pre class="userinput"><kbd class="command">sed -i 's:"/desktop:"/org:' schema/*.xml &amp;&amp;
+
+./configure --prefix=/usr     \
+            --sysconfdir=/etc &amp;&amp;
+make</kbd></pre><p>
+      A session bus address is necessary to run the tests. To test the results,
+      issue: <span class="command"><strong>make check</strong></span>.
+    </p><p>
+      Now, as the <code class="systemitem">root</code> user:
+    </p><pre class="root"><kbd class="command">make install</kbd></pre></div><div class="commands" lang="en" xml:lang="en"><h2 class="sect2">Command Explanations</h2><p>
+      <span class="command"><strong>sed ... schema/*.xml</strong></span>:  This command fixes a
+      deprecated entry in the schema template.
+    </p></div><div class="content" lang="en" xml:lang="en"><h2 class="sect2">Contents</h2><div class="segmentedlist"><div class="seglistitem"><div class="seg"><strong class="segtitle">Installed Programs: </strong><span class="segbody">
+          gnome-keyring (symlink), gnome-keyring-3, and gnome-keyring-daemon
+        </span></div><div class="seg"><strong class="segtitle">Installed Libraries: </strong><span class="segbody">
+          gnome-keyring-pkcs11.so (PKCS#11 module) and 
+          pam_gnome_keyring.so (PAM module)
+        </span></div><div class="seg"><strong class="segtitle">Installed Directory: </strong><span class="segbody">
+          /usr/lib/gnome-keyring and
+          /usr/share/xdg-desktop-portal
+        </span></div></div></div><div class="variablelist"><h3>Short Descriptions</h3><table border="0" class="variablelist"><colgroup><col align="left" valign="top" /><col /></colgroup><tbody><tr><td><p><a id="gnome-keyring-daemon"></a><span class="term"><span class="command"><strong>gnome-keyring-daemon</strong></span></span></p></td><td><p>
+            is a session daemon that keeps passwords for users
+          </p></td></tr></tbody></table></div></div><p class="updated">Last updated 
+      on
+      </p></div><div class="navfooter"><ul><li class="prev"><a accesskey="p" href="openssh.html" title="OpenSSH-8.7p1">Prev</a><p>OpenSSH-8.7p1</p></li><li class="next"><a accesskey="n" href="appendices/creat-comm.html" title="Creative Commons License">Next</a><p>Creative Commons License</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div></body></html>

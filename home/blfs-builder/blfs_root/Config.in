@@ -1,0 +1,3465 @@
+config	MENU_lfs
+bool	"LFS Packages"
+default	n
+
+menu "LFS Packages"
+depends on MENU_lfs
+
+	config	MENU_lfs-system
+	bool	"LFS Final System"
+	default	n
+
+	menu "LFS Final System"
+	depends on MENU_lfs-system
+
+		config	CONFIG_man-pages
+		bool	"man-pages 5.13"
+		default	n
+
+		config	CONFIG_iana-etc
+		bool	"iana-etc 20210611"
+		default	n
+
+		config	CONFIG_glibc
+		bool	"glibc 2.34"
+		default	n
+
+		config	CONFIG_zlib
+		bool	"zlib 1.2.11"
+		default	n
+
+		config	CONFIG_bzip2
+		bool	"bzip2 1.0.8"
+		default	n
+
+		config	CONFIG_xz
+		bool	"xz 5.2.5"
+		default	n
+
+		config	CONFIG_zstd
+		bool	"zstd 1.5.0"
+		default	n
+
+		config	CONFIG_file
+		bool	"file 5.40"
+		default	n
+
+		config	CONFIG_readline
+		bool	"readline 8.1"
+		default	n
+
+		config	CONFIG_m4
+		bool	"m4 1.4.19"
+		default	n
+
+		config	CONFIG_bc
+		bool	"bc 5.0.0"
+		default	n
+
+		config	CONFIG_flex
+		bool	"flex 2.6.4"
+		default	n
+
+		config	CONFIG_tcl
+		bool	"tcl 8.6.11"
+		default	n
+
+		config	CONFIG_expect
+		bool	"expect 5.45.4"
+		default	n
+
+		config	CONFIG_dejagnu
+		bool	"dejagnu 1.6.3"
+		default	n
+
+		config	CONFIG_binutils
+		bool	"binutils 2.37"
+		default	n
+
+		config	CONFIG_gmp
+		bool	"gmp 6.2.1"
+		default	n
+
+		config	CONFIG_mpfr
+		bool	"mpfr 4.1.0"
+		default	n
+
+		config	CONFIG_mpc
+		bool	"mpc 1.2.1"
+		default	n
+
+		config	CONFIG_attr
+		bool	"attr 2.5.1"
+		default	n
+
+		config	CONFIG_acl
+		bool	"acl 2.3.1"
+		default	n
+
+		config	CONFIG_libcap
+		bool	"libcap 2.53"
+		default	n
+
+		config	CONFIG_pkg-config
+		bool	"pkg-config 0.29.2"
+		default	n
+
+		config	CONFIG_ncurses
+		bool	"ncurses 6.2"
+		default	n
+
+		config	CONFIG_sed
+		bool	"sed 4.8"
+		default	n
+
+		config	CONFIG_psmisc
+		bool	"psmisc 23.4"
+		default	n
+
+		config	CONFIG_gettext
+		bool	"gettext 0.21"
+		default	n
+
+		config	CONFIG_bison
+		bool	"bison 3.7.6"
+		default	n
+
+		config	CONFIG_grep
+		bool	"grep 3.7"
+		default	n
+
+		config	CONFIG_bash
+		bool	"bash 5.1.8"
+		default	n
+
+		config	CONFIG_libtool
+		bool	"libtool 2.4.6"
+		default	n
+
+		config	CONFIG_gdbm
+		bool	"gdbm 1.20"
+		default	n
+
+		config	CONFIG_gperf
+		bool	"gperf 3.1"
+		default	n
+
+		config	CONFIG_expat
+		bool	"expat 2.4.1"
+		default	n
+
+		config	CONFIG_inetutils
+		bool	"inetutils 2.1"
+		default	n
+
+		config	CONFIG_less
+		bool	"less 590"
+		default	n
+
+		config	CONFIG_perl
+		bool	"perl 5.34.0"
+		default	n
+
+		config	CONFIG_xml-parser
+		bool	"xml-parser 2.46"
+		default	n
+
+		config	CONFIG_intltool
+		bool	"intltool 0.51.0"
+		default	n
+
+		config	CONFIG_autoconf
+		bool	"autoconf 2.71"
+		default	n
+
+		config	CONFIG_automake
+		bool	"automake 1.16.4"
+		default	n
+
+		config	CONFIG_kmod
+		bool	"kmod 29"
+		default	n
+
+		config	CONFIG_libelf
+		bool	"libelf 0.185"
+		default	n
+
+		config	CONFIG_libffi
+		bool	"libffi 3.4.2"
+		default	n
+
+		config	CONFIG_openssl
+		bool	"openssl 1.1.1l"
+		default	n
+
+		config	CONFIG_ninja
+		bool	"ninja 1.10.2"
+		default	n
+
+		config	CONFIG_meson
+		bool	"meson 0.59.1"
+		default	n
+
+		config	CONFIG_coreutils
+		bool	"coreutils 8.32"
+		default	n
+
+		config	CONFIG_check
+		bool	"check 0.15.2"
+		default	n
+
+		config	CONFIG_diffutils
+		bool	"diffutils 3.8"
+		default	n
+
+		config	CONFIG_gawk
+		bool	"gawk 5.1.0"
+		default	n
+
+		config	CONFIG_findutils
+		bool	"findutils 4.8.0"
+		default	n
+
+		config	CONFIG_groff
+		bool	"groff 1.22.4"
+		default	n
+
+		config	CONFIG_grub
+		bool	"grub 2.06"
+		default	n
+
+		config	CONFIG_gzip
+		bool	"gzip 1.10"
+		default	n
+
+		config	CONFIG_iproute2
+		bool	"iproute2 5.13.0"
+		default	n
+
+		config	CONFIG_kbd
+		bool	"kbd 2.4.0"
+		default	n
+
+		config	CONFIG_libpipeline
+		bool	"libpipeline 1.5.3"
+		default	n
+
+		config	CONFIG_make
+		bool	"make 4.3"
+		default	n
+
+		config	CONFIG_patch
+		bool	"patch 2.7.6"
+		default	n
+
+		config	CONFIG_tar
+		bool	"tar 1.34"
+		default	n
+
+		config	CONFIG_texinfo
+		bool	"texinfo 6.8"
+		default	n
+
+		config	CONFIG_eudev
+		bool	"eudev 3.2.10"
+		default	n
+
+		config	CONFIG_man-db
+		bool	"man-db 2.9.4"
+		default	n
+
+		config	CONFIG_procps-ng
+		bool	"procps-ng 3.3.17"
+		default	n
+
+		config	CONFIG_util-linux
+		bool	"util-linux 2.37.2"
+		default	n
+
+		config	CONFIG_e2fsprogs
+		bool	"e2fsprogs 1.46.4"
+		default	n
+
+		config	CONFIG_sysklogd
+		bool	"sysklogd 1.5.1"
+		default	n
+
+		config	CONFIG_sysvinit
+		bool	"sysvinit 2.99"
+		default	n
+
+	endmenu
+
+	config	MENU_lfs-conf
+	bool	"LFS Configuration files"
+	default	n
+
+	menu "LFS Configuration files"
+	depends on MENU_lfs-conf
+
+		config	CONFIG_bootscripts
+		bool	"bootscripts 20210608"
+		default	n
+
+	endmenu
+
+	config	MENU_lfs-boot
+	bool	"LFS Making Bootable"
+	default	n
+
+	menu "LFS Making Bootable"
+	depends on MENU_lfs-boot
+
+		config	CONFIG_kernel
+		bool	"kernel 5.13.12"
+		default	n
+
+	endmenu
+
+	config	MENU_lfs-theend
+	bool	"LFS The end"
+	default	n
+
+	menu "LFS The end"
+	depends on MENU_lfs-theend
+
+		config	CONFIG_LFS-Release
+		bool	"LFS-Release 11.0"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_postlfs
+bool	"Post LFS Configuration and Extra Software"
+default	n
+
+menu "Post LFS Configuration and Extra Software"
+depends on MENU_postlfs
+
+	config	MENU_postlfs-security
+	bool	"Security"
+	default	n
+
+	menu "Security"
+	depends on MENU_postlfs-security
+
+		config	CONFIG_cracklib
+		bool	"cracklib 2.9.7"
+		default	n
+
+		config	CONFIG_cryptsetup
+		bool	"cryptsetup 2.3.6"
+		default	n
+
+		config	CONFIG_haveged
+		bool	"haveged 1.9.14"
+		default	n
+
+		config	CONFIG_iptables
+		bool	"iptables 1.8.7"
+		default	n
+
+		config	CONFIG_libcap-pam
+		bool	"libcap-pam 2.53 with PAM"
+		default	n
+
+		config	CONFIG_liboauth
+		bool	"liboauth 1.0.3"
+		default	n
+
+		config	CONFIG_libpwquality
+		bool	"libpwquality 1.4.4"
+		default	n
+
+		config	CONFIG_polkit-gnome
+		bool	"polkit-gnome 0.105"
+		default	n
+
+		config	CONFIG_ssh-askpass
+		bool	"ssh-askpass 8.7p1"
+		default	n
+
+		config	CONFIG_stunnel
+		bool	"stunnel 5.60"
+		default	n
+
+		config	CONFIG_tripwire
+		bool	"tripwire 2.4.3.7"
+		default	n
+
+		config	CONFIG_volume_key
+		bool	"volume_key 0.3.12"
+		default	n
+
+	endmenu
+
+	config	MENU_postlfs-filesystems
+	bool	"File Systems and Disk Management"
+	default	n
+
+	menu "File Systems and Disk Management"
+	depends on MENU_postlfs-filesystems
+
+		config	CONFIG_btrfs-progs
+		bool	"btrfs-progs 5.13.1"
+		default	n
+
+		config	CONFIG_dosfstools
+		bool	"dosfstools 4.2"
+		default	n
+
+		config	CONFIG_efibootmgr
+		bool	"efibootmgr 17"
+		default	n
+
+		config	CONFIG_efivar
+		bool	"efivar 37"
+		default	n
+
+		config	CONFIG_fuse3
+		bool	"fuse3 3.10.4"
+		default	n
+
+		config	CONFIG_gptfdisk
+		bool	"gptfdisk 1.0.8"
+		default	n
+
+		config	CONFIG_grub-efi
+		bool	"grub-efi 2.06 for EFI"
+		default	n
+
+		config	CONFIG_initramfs
+		bool	"initramfs 1.0.0"
+		default	n
+
+		config	CONFIG_jfsutils
+		bool	"jfsutils 1.1.15"
+		default	n
+
+		config	CONFIG_mdadm
+		bool	"mdadm 4.1"
+		default	n
+
+		config	CONFIG_ntfs-3g
+		bool	"ntfs-3g 3g-2021.8.22"
+		default	n
+
+		config	CONFIG_reiserfs
+		bool	"reiserfs 3.6.27"
+		default	n
+
+		config	CONFIG_smartmontools
+		bool	"smartmontools 7.2"
+		default	n
+
+		config	CONFIG_sshfs
+		bool	"sshfs 3.7.2"
+		default	n
+
+		config	CONFIG_xfsprogs
+		bool	"xfsprogs 5.13.0"
+		default	n
+
+	endmenu
+
+	config	MENU_postlfs-editors
+	bool	"Editors"
+	default	n
+
+	menu "Editors"
+	depends on MENU_postlfs-editors
+
+		config	CONFIG_bluefish
+		bool	"bluefish 2.2.12"
+		default	n
+
+		config	CONFIG_ed
+		bool	"ed 1.17"
+		default	n
+
+		config	CONFIG_emacs
+		bool	"emacs 27.2"
+		default	n
+
+		config	CONFIG_gedit
+		bool	"gedit 40.1"
+		default	n
+
+		config	CONFIG_joe
+		bool	"joe 4.6"
+		default	n
+
+		config	CONFIG_kate5
+		bool	"kate5 21.08.0"
+		default	n
+
+		config	CONFIG_mousepad
+		bool	"mousepad 0.5.6"
+		default	n
+
+		config	CONFIG_nano
+		bool	"nano 5.8"
+		default	n
+
+		config	CONFIG_vim
+		bool	"vim 8.2.3337"
+		default	n
+
+	endmenu
+
+	config	MENU_postlfs-shells
+	bool	"Shells"
+	default	n
+
+	menu "Shells"
+	depends on MENU_postlfs-shells
+
+		config	CONFIG_dash
+		bool	"dash 0.5.11.4"
+		default	n
+
+		config	CONFIG_tcsh
+		bool	"tcsh 6.22.04"
+		default	n
+
+		config	CONFIG_zsh
+		bool	"zsh 5.8"
+		default	n
+
+	endmenu
+
+	config	MENU_postlfs-virtualization
+	bool	"Virtualization"
+	default	n
+
+	menu "Virtualization"
+	depends on MENU_postlfs-virtualization
+
+		config	CONFIG_qemu
+		bool	"qemu 6.1.0"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_general
+bool	"General Libraries and Utilities"
+default	n
+
+menu "General Libraries and Utilities"
+depends on MENU_general
+
+	config	MENU_general-genlib
+	bool	"General Libraries"
+	default	n
+
+	menu "General Libraries"
+	depends on MENU_general-genlib
+
+		config	CONFIG_apr
+		bool	"apr 1.7.0"
+		default	n
+
+		config	CONFIG_apr-util
+		bool	"apr-util 1.6.1"
+		default	n
+
+		config	CONFIG_aspell
+		bool	"aspell 0.60.8"
+		default	n
+
+		config	CONFIG_brotli
+		bool	"brotli 1.0.9"
+		default	n
+
+		config	CONFIG_double-conversion
+		bool	"double-conversion 3.1.5"
+		default	n
+
+		config	CONFIG_enchant
+		bool	"enchant 2.3.1"
+		default	n
+
+		config	CONFIG_fftw
+		bool	"fftw 3.3.9"
+		default	n
+
+		config	CONFIG_gmime3
+		bool	"gmime3 3.2.7"
+		default	n
+
+		config	CONFIG_grantlee
+		bool	"grantlee 5.2.0"
+		default	n
+
+		config	CONFIG_gsl
+		bool	"gsl 2.7"
+		default	n
+
+		config	CONFIG_gspell
+		bool	"gspell 1.8.4"
+		default	n
+
+		config	CONFIG_inih
+		bool	"inih 53"
+		default	n
+
+		config	CONFIG_json-c
+		bool	"json-c 0.15"
+		default	n
+
+		config	CONFIG_keyutils
+		bool	"keyutils 1.6.1"
+		default	n
+
+		config	CONFIG_libatasmart
+		bool	"libatasmart 0.19"
+		default	n
+
+		config	CONFIG_libatomic_ops
+		bool	"libatomic_ops 7.6.10"
+		default	n
+
+		config	CONFIG_libblockdev
+		bool	"libblockdev 2.26"
+		default	n
+
+		config	CONFIG_libbytesize
+		bool	"libbytesize 2.6"
+		default	n
+
+		config	CONFIG_libdaemon
+		bool	"libdaemon 0.14"
+		default	n
+
+		config	CONFIG_libgsf
+		bool	"libgsf 1.14.47"
+		default	n
+
+		config	CONFIG_libgusb
+		bool	"libgusb 0.3.7"
+		default	n
+
+		config	CONFIG_libical
+		bool	"libical 3.0.10"
+		default	n
+
+		config	CONFIG_libidn
+		bool	"libidn 1.38"
+		default	n
+
+		config	CONFIG_libiodbc
+		bool	"libiodbc 3.52.15"
+		default	n
+
+		config	CONFIG_liblinear
+		bool	"liblinear 243"
+		default	n
+
+		config	CONFIG_libpaper
+		bool	"libpaper 1.1.24+nmu5"
+		default	n
+
+		config	CONFIG_libsigc3
+		bool	"libsigc3 3.0.7"
+		default	n
+
+		config	CONFIG_libsigsegv
+		bool	"libsigsegv 2.13"
+		default	n
+
+		config	CONFIG_libstatgrab
+		bool	"libstatgrab 0.92.1"
+		default	n
+
+		config	CONFIG_libuninameslist
+		bool	"libuninameslist 20210626"
+		default	n
+
+		config	CONFIG_libusb
+		bool	"libusb 1.0.24"
+		default	n
+
+		config	CONFIG_libwacom
+		bool	"libwacom 1.11"
+		default	n
+
+		config	CONFIG_libwpe
+		bool	"libwpe 1.10.1"
+		default	n
+
+		config	CONFIG_libyaml
+		bool	"libyaml 0.2.5"
+		default	n
+
+		config	CONFIG_lzo
+		bool	"lzo 2.10"
+		default	n
+
+		config	CONFIG_pcre2
+		bool	"pcre2 10.37"
+		default	n
+
+		config	CONFIG_popt
+		bool	"popt 1.18"
+		default	n
+
+		config	CONFIG_pth
+		bool	"pth 2.0.7"
+		default	n
+
+		config	CONFIG_qca
+		bool	"qca 2.3.3"
+		default	n
+
+		config	CONFIG_talloc
+		bool	"talloc 2.3.3"
+		default	n
+
+		config	CONFIG_telepathy-glib
+		bool	"telepathy-glib 0.24.2"
+		default	n
+
+		config	CONFIG_uchardet
+		bool	"uchardet 0.0.7"
+		default	n
+
+		config	CONFIG_umockdev
+		bool	"umockdev 0.16.2"
+		default	n
+
+		config	CONFIG_wpebackend-fdo
+		bool	"wpebackend-fdo 1.10.0"
+		default	n
+
+		config	CONFIG_wv
+		bool	"wv 1.2.9"
+		default	n
+
+		config	CONFIG_xapian
+		bool	"xapian 1.4.18"
+		default	n
+
+	endmenu
+
+	config	MENU_general-graphlib
+	bool	"Graphics and Font Libraries"
+	default	n
+
+	menu "Graphics and Font Libraries"
+	depends on MENU_general-graphlib
+
+		config	CONFIG_aalib
+		bool	"aalib 1.4rc5"
+		default	n
+
+		config	CONFIG_babl
+		bool	"babl 0.1.88"
+		default	n
+
+		config	CONFIG_gegl
+		bool	"gegl 0.4.30"
+		default	n
+
+		config	CONFIG_graphite2
+		bool	"graphite2 1.3.14"
+		default	n
+
+		config	CONFIG_jasper
+		bool	"jasper 2.0.33"
+		default	n
+
+		config	CONFIG_lcms
+		bool	"lcms 1.19"
+		default	n
+
+		config	CONFIG_libexif
+		bool	"libexif 0.6.22"
+		default	n
+
+		config	CONFIG_libgxps
+		bool	"libgxps 0.3.2"
+		default	n
+
+		config	CONFIG_libmng
+		bool	"libmng 2.0.3"
+		default	n
+
+		config	CONFIG_libmypaint
+		bool	"libmypaint 1.6.1"
+		default	n
+
+		config	CONFIG_libraw
+		bool	"libraw 0.20.2"
+		default	n
+
+		config	CONFIG_librsvg
+		bool	"librsvg 2.50.7"
+		default	n
+
+		config	CONFIG_libspiro
+		bool	"libspiro 20200505"
+		default	n
+
+		config	CONFIG_mypaint-brushes
+		bool	"mypaint-brushes 1.3.0"
+		default	n
+
+		config	CONFIG_newt
+		bool	"newt 0.52.21"
+		default	n
+
+		config	CONFIG_opencv
+		bool	"opencv 4.5.3"
+		default	n
+
+		config	CONFIG_potrace
+		bool	"potrace 1.16"
+		default	n
+
+		config	CONFIG_qrencode
+		bool	"qrencode 4.1.1"
+		default	n
+
+		config	CONFIG_sassc
+		bool	"sassc 3.6.2"
+		default	n
+
+		config	CONFIG_woff2
+		bool	"woff2 1.0.2"
+		default	n
+
+	endmenu
+
+	config	MENU_general-genutils
+	bool	"General Utilities"
+	default	n
+
+	menu "General Utilities"
+	depends on MENU_general-genutils
+
+		config	CONFIG_asciidoc
+		bool	"asciidoc 9.1.0"
+		default	n
+
+		config	CONFIG_asciidoctor
+		bool	"asciidoctor 2.0.16"
+		default	n
+
+		config	CONFIG_bogofilter
+		bool	"bogofilter 1.2.5"
+		default	n
+
+		config	CONFIG_compface
+		bool	"compface 1.5.2"
+		default	n
+
+		config	CONFIG_hd2u
+		bool	"hd2u 1.0.4"
+		default	n
+
+		config	CONFIG_highlight
+		bool	"highlight 4.1"
+		default	n
+
+		config	CONFIG_ibus
+		bool	"ibus 1.5.25"
+		default	n
+
+		config	CONFIG_imagemagick
+		bool	"imagemagick 7.1.0-4"
+		default	n
+
+		config	CONFIG_lsof
+		bool	"lsof 4.91"
+		default	n
+
+		config	CONFIG_rarian
+		bool	"rarian 0.8.1"
+		default	n
+
+		config	CONFIG_rep-gtk
+		bool	"rep-gtk 0.90.8.3"
+		default	n
+
+		config	CONFIG_screen
+		bool	"screen 4.8.0"
+		default	n
+
+		config	CONFIG_sharutils
+		bool	"sharutils 4.15.2"
+		default	n
+
+		config	CONFIG_telepathy-logger
+		bool	"telepathy-logger 0.8.2"
+		default	n
+
+		config	CONFIG_telepathy-mission-control
+		bool	"telepathy-mission-control 5.16.6"
+		default	n
+
+		config	CONFIG_tidy-html5
+		bool	"tidy-html5 5.8.0"
+		default	n
+
+		config	CONFIG_time
+		bool	"time 1.9"
+		default	n
+
+		config	CONFIG_tree
+		bool	"tree 1.8.0"
+		default	n
+
+		config	CONFIG_xdg-user-dirs
+		bool	"xdg-user-dirs 0.17"
+		default	n
+
+	endmenu
+
+	config	MENU_general-sysutils
+	bool	"System Utilities"
+	default	n
+
+	menu "System Utilities"
+	depends on MENU_general-sysutils
+
+		config	CONFIG_accountsservice
+		bool	"accountsservice 0.6.55"
+		default	n
+
+		config	CONFIG_acpid
+		bool	"acpid 2.0.32"
+		default	n
+
+		config	CONFIG_at
+		bool	"at 3.2.2"
+		default	n
+
+		config	CONFIG_autofs
+		bool	"autofs 5.1.7"
+		default	n
+
+		config	CONFIG_blocaled
+		bool	"blocaled 0.3"
+		default	n
+
+		config	CONFIG_bluez
+		bool	"bluez 5.61"
+		default	n
+
+		config	CONFIG_colord
+		bool	"colord 1.4.5"
+		default	n
+
+		config	CONFIG_cups-pk-helper
+		bool	"cups-pk-helper 0.2.6"
+		default	n
+
+		config	CONFIG_fcron
+		bool	"fcron 3.2.1"
+		default	n
+
+		config	CONFIG_gpm
+		bool	"gpm 1.20.7"
+		default	n
+
+		config	CONFIG_hdparm
+		bool	"hdparm 9.62"
+		default	n
+
+		config	CONFIG_logrotate
+		bool	"logrotate 3.18.1"
+		default	n
+
+		config	CONFIG_lsb-tools
+		bool	"lsb-tools 0.9"
+		default	n
+
+		config	CONFIG_mc
+		bool	"mc 4.8.27"
+		default	n
+
+		config	CONFIG_p7zip
+		bool	"p7zip 17.04"
+		default	n
+
+		config	CONFIG_pax
+		bool	"pax 20201030"
+		default	n
+
+		config	CONFIG_pm-utils
+		bool	"pm-utils 1.4.1"
+		default	n
+
+		config	CONFIG_sg3_utils
+		bool	"sg3_utils 1.46"
+		default	n
+
+		config	CONFIG_sysstat
+		bool	"sysstat 12.5.4"
+		default	n
+
+		config	CONFIG_udisks2
+		bool	"udisks2 2.9.3"
+		default	n
+
+		config	CONFIG_unrar
+		bool	"unrar 6.0.7"
+		default	n
+
+		config	CONFIG_upower
+		bool	"upower 0_99_13"
+		default	n
+
+		config	CONFIG_usbutils
+		bool	"usbutils 014"
+		default	n
+
+	endmenu
+
+	config	MENU_general-prog
+	bool	"Programming"
+	default	n
+
+	menu "Programming"
+	depends on MENU_general-prog
+
+		config	CONFIG_clisp
+		bool	"clisp 2.49"
+		default	n
+
+		config	CONFIG_doxygen
+		bool	"doxygen 1.9.2"
+		default	n
+
+		config	CONFIG_gc
+		bool	"gc 8.0.4"
+		default	n
+
+		config	CONFIG_gcc
+		bool	"gcc 11.2.0"
+		default	n
+
+		config	CONFIG_gdb
+		bool	"gdb 10.2"
+		default	n
+
+		config	CONFIG_guile
+		bool	"guile 3.0.7"
+		default	n
+
+		config	CONFIG_librep
+		bool	"librep 0.92.7"
+		default	n
+
+		config	CONFIG_lua52
+		bool	"lua52 5.2.4"
+		default	n
+
+		config	CONFIG_mercurial
+		bool	"mercurial 5.9"
+		default	n
+
+		config	MENU_Perl_Module_Dependencies
+		bool	"Perl Module Dependencies"
+		default	n
+
+		menu "Perl Module Dependencies"
+		depends on MENU_Perl_Module_Dependencies
+
+			config	CONFIG_perl-algorithm-diff
+			bool	"perl-algorithm-diff 1.201"
+			default	n
+
+			config	CONFIG_perl-alien-build
+			bool	"perl-alien-build 2.41"
+			default	n
+
+			config	CONFIG_perl-alien-libxml2
+			bool	"perl-alien-libxml2 0.17"
+			default	n
+
+			config	CONFIG_perl-b-cow
+			bool	"perl-b-cow 0.004"
+			default	n
+
+			config	CONFIG_perl-b-hooks-endofscope
+			bool	"perl-b-hooks-endofscope 0.24"
+			default	n
+
+			config	CONFIG_perl-business-isbn-data
+			bool	"perl-business-isbn-data 20210112.006"
+			default	n
+
+			config	CONFIG_perl-capture-tiny
+			bool	"perl-capture-tiny 0.48"
+			default	n
+
+			config	CONFIG_perl-class-data-inheritable
+			bool	"perl-class-data-inheritable 0.08"
+			default	n
+
+			config	CONFIG_perl-class-inspector
+			bool	"perl-class-inspector 1.36"
+			default	n
+
+			config	CONFIG_perl-class-singleton
+			bool	"perl-class-singleton 1.6"
+			default	n
+
+			config	CONFIG_perl-class-tiny
+			bool	"perl-class-tiny 1.008"
+			default	n
+
+			config	CONFIG_perl-clone
+			bool	"perl-clone 0.45"
+			default	n
+
+			config	CONFIG_perl-config-autoconf
+			bool	"perl-config-autoconf 0.320"
+			default	n
+
+			config	CONFIG_perl-cpan-meta-check
+			bool	"perl-cpan-meta-check 0.014"
+			default	n
+
+			config	CONFIG_perl-datetime
+			bool	"perl-datetime 1.54"
+			default	n
+
+			config	CONFIG_perl-datetime-format-strptime
+			bool	"perl-datetime-format-strptime 1.79"
+			default	n
+
+			config	CONFIG_perl-datetime-locale
+			bool	"perl-datetime-locale 1.32"
+			default	n
+
+			config	CONFIG_perl-datetime-timezone
+			bool	"perl-datetime-timezone 2.47"
+			default	n
+
+			config	CONFIG_perl-devel-stacktrace
+			bool	"perl-devel-stacktrace 2.04"
+			default	n
+
+			config	CONFIG_perl-dist-checkconflicts
+			bool	"perl-dist-checkconflicts 0.11"
+			default	n
+
+			config	CONFIG_perl-encode-locale
+			bool	"perl-encode-locale 1.05"
+			default	n
+
+			config	CONFIG_perl-eval-closure
+			bool	"perl-eval-closure 0.14"
+			default	n
+
+			config	CONFIG_perl-exception-class
+			bool	"perl-exception-class 1.45"
+			default	n
+
+			config	CONFIG_perl-exporter-tiny
+			bool	"perl-exporter-tiny 1.002002"
+			default	n
+
+			config	CONFIG_perl-extutils-libbuilder
+			bool	"perl-extutils-libbuilder 0.08"
+			default	n
+
+			config	CONFIG_perl-ffi-checklib
+			bool	"perl-ffi-checklib 0.28"
+			default	n
+
+			config	CONFIG_perl-file-chdir
+			bool	"perl-file-chdir 0.1010"
+			default	n
+
+			config	CONFIG_perl-file-copy-recursive
+			bool	"perl-file-copy-recursive 0.45"
+			default	n
+
+			config	CONFIG_perl-file-find-rule
+			bool	"perl-file-find-rule 0.34"
+			default	n
+
+			config	CONFIG_perl-file-listing
+			bool	"perl-file-listing 6.14"
+			default	n
+
+			config	CONFIG_perl-file-sharedir
+			bool	"perl-file-sharedir 1.118"
+			default	n
+
+			config	CONFIG_perl-file-sharedir-install
+			bool	"perl-file-sharedir-install 0.13"
+			default	n
+
+			config	CONFIG_perl-html-tagset
+			bool	"perl-html-tagset 3.20"
+			default	n
+
+			config	CONFIG_perl-http-cookies
+			bool	"perl-http-cookies 6.10"
+			default	n
+
+			config	CONFIG_perl-http-date
+			bool	"perl-http-date 6.05"
+			default	n
+
+			config	CONFIG_perl-http-message
+			bool	"perl-http-message 6.33"
+			default	n
+
+			config	CONFIG_perl-http-negotiate
+			bool	"perl-http-negotiate 6.01"
+			default	n
+
+			config	CONFIG_perl-importer
+			bool	"perl-importer 0.026"
+			default	n
+
+			config	CONFIG_perl-io-html
+			bool	"perl-io-html 1.004"
+			default	n
+
+			config	CONFIG_perl-ipc-system-simple
+			bool	"perl-ipc-system-simple 1.30"
+			default	n
+
+			config	CONFIG_perl-libwww-perl
+			bool	"perl-libwww-perl 6.55"
+			default	n
+
+			config	CONFIG_perl-list-moreutils-xs
+			bool	"perl-list-moreutils-xs 0.430"
+			default	n
+
+			config	CONFIG_perl-list-someutils
+			bool	"perl-list-someutils 0.58"
+			default	n
+
+			config	CONFIG_perl-list-someutils-xs
+			bool	"perl-list-someutils-xs 0.58"
+			default	n
+
+			config	CONFIG_perl-list-utilsby
+			bool	"perl-list-utilsby 0.11"
+			default	n
+
+			config	CONFIG_perl-lwp-mediatypes
+			bool	"perl-lwp-mediatypes 6.04"
+			default	n
+
+			config	CONFIG_perl-mime-charset
+			bool	"perl-mime-charset 1.012.2"
+			default	n
+
+			config	CONFIG_perl-module-implementation
+			bool	"perl-module-implementation 0.09"
+			default	n
+
+			config	CONFIG_perl-module-pluggable
+			bool	"perl-module-pluggable 5.2"
+			default	n
+
+			config	CONFIG_perl-module-runtime
+			bool	"perl-module-runtime 0.016"
+			default	n
+
+			config	CONFIG_perl-mro-compat
+			bool	"perl-mro-compat 0.13"
+			default	n
+
+			config	CONFIG_perl-namespace-autoclean
+			bool	"perl-namespace-autoclean 0.29"
+			default	n
+
+			config	CONFIG_perl-namespace-clean
+			bool	"perl-namespace-clean 0.27"
+			default	n
+
+			config	CONFIG_perl-net-http
+			bool	"perl-net-http 6.21"
+			default	n
+
+			config	CONFIG_perl-net-ssleay
+			bool	"perl-net-ssleay 1.90"
+			default	n
+
+			config	CONFIG_perl-number-compare
+			bool	"perl-number-compare 0.03"
+			default	n
+
+			config	CONFIG_perl-package-stash
+			bool	"perl-package-stash 0.39"
+			default	n
+
+			config	CONFIG_perl-params-validate
+			bool	"perl-params-validate 1.30"
+			default	n
+
+			config	CONFIG_perl-params-validationcompiler
+			bool	"perl-params-validationcompiler 0.30"
+			default	n
+
+			config	CONFIG_perl-path-tiny
+			bool	"perl-path-tiny 0.118"
+			default	n
+
+			config	CONFIG_perl-role-tiny
+			bool	"perl-role-tiny 2.002004"
+			default	n
+
+			config	CONFIG_perl-scalar-list-utils
+			bool	"perl-scalar-list-utils 1.56"
+			default	n
+
+			config	CONFIG_perl-scope-guard
+			bool	"perl-scope-guard 0.21"
+			default	n
+
+			config	CONFIG_perl-specio
+			bool	"perl-specio 0.47"
+			default	n
+
+			config	CONFIG_perl-sub-exporter-progressive
+			bool	"perl-sub-exporter-progressive 0.001013"
+			default	n
+
+			config	CONFIG_perl-sub-identify
+			bool	"perl-sub-identify 0.14"
+			default	n
+
+			config	CONFIG_perl-sub-info
+			bool	"perl-sub-info 0.002"
+			default	n
+
+			config	CONFIG_perl-sub-quote
+			bool	"perl-sub-quote 2.006006"
+			default	n
+
+			config	CONFIG_perl-sub-uplevel
+			bool	"perl-sub-uplevel 0.2800"
+			default	n
+
+			config	CONFIG_perl-super
+			bool	"perl-super 1.20190531"
+			default	n
+
+			config	CONFIG_perl-term-table
+			bool	"perl-term-table 0.015"
+			default	n
+
+			config	CONFIG_perl-test-deep
+			bool	"perl-test-deep 1.130"
+			default	n
+
+			config	CONFIG_perl-test-exception
+			bool	"perl-test-exception 0.43"
+			default	n
+
+			config	CONFIG_perl-test-fatal
+			bool	"perl-test-fatal 0.016"
+			default	n
+
+			config	CONFIG_perl-test-file
+			bool	"perl-test-file 1.448"
+			default	n
+
+			config	CONFIG_perl-test-file-sharedir
+			bool	"perl-test-file-sharedir 1.001002"
+			default	n
+
+			config	CONFIG_perl-test-leaktrace
+			bool	"perl-test-leaktrace 0.17"
+			default	n
+
+			config	CONFIG_perl-test-mockmodule
+			bool	"perl-test-mockmodule v0.176.0"
+			default	n
+
+			config	CONFIG_perl-test-needs
+			bool	"perl-test-needs 0.002009"
+			default	n
+
+			config	CONFIG_perl-test-requires
+			bool	"perl-test-requires 0.11"
+			default	n
+
+			config	CONFIG_perl-test-requiresinternet
+			bool	"perl-test-requiresinternet 0.05"
+			default	n
+
+			config	CONFIG_perl-test-utf8
+			bool	"perl-test-utf8 1.02"
+			default	n
+
+			config	CONFIG_perl-test-warnings
+			bool	"perl-test-warnings 0.031"
+			default	n
+
+			config	CONFIG_perl-test-without-module
+			bool	"perl-test-without-module 0.20"
+			default	n
+
+			config	CONFIG_perl-test2-plugin-nowarnings
+			bool	"perl-test2-plugin-nowarnings 0.09"
+			default	n
+
+			config	CONFIG_perl-test2-suite
+			bool	"perl-test2-suite 0.000140"
+			default	n
+
+			config	CONFIG_perl-text-csv_xs
+			bool	"perl-text-csv_xs 1.46"
+			default	n
+
+			config	CONFIG_perl-text-diff
+			bool	"perl-text-diff 1.45"
+			default	n
+
+			config	CONFIG_perl-text-glob
+			bool	"perl-text-glob 0.11"
+			default	n
+
+			config	CONFIG_perl-tie-cycle
+			bool	"perl-tie-cycle 1.226"
+			default	n
+
+			config	CONFIG_perl-timedate
+			bool	"perl-timedate 2.33"
+			default	n
+
+			config	CONFIG_perl-try-tiny
+			bool	"perl-try-tiny 0.30"
+			default	n
+
+			config	CONFIG_perl-variable-magic
+			bool	"perl-variable-magic 0.62"
+			default	n
+
+			config	CONFIG_perl-www-robotrules
+			bool	"perl-www-robotrules 6.02"
+			default	n
+
+			config	CONFIG_perl-xml-libxml
+			bool	"perl-xml-libxml 2.0207"
+			default	n
+
+			config	CONFIG_perl-xml-namespacesupport
+			bool	"perl-xml-namespacesupport 1.12"
+			default	n
+
+			config	CONFIG_perl-xml-sax
+			bool	"perl-xml-sax 1.02"
+			default	n
+
+			config	CONFIG_perl-xml-sax-base
+			bool	"perl-xml-sax-base 1.09"
+			default	n
+
+		endmenu
+
+		config	MENU_Perl_Modules
+		bool	"Perl Modules"
+		default	n
+
+		menu "Perl Modules"
+		depends on MENU_Perl_Modules
+
+			config	CONFIG_perl-autovivification
+			bool	"perl-autovivification 0.18"
+			default	n
+
+			config	CONFIG_perl-business-isbn
+			bool	"perl-business-isbn 3.006"
+			default	n
+
+			config	CONFIG_perl-business-ismn
+			bool	"perl-business-ismn 1.202"
+			default	n
+
+			config	CONFIG_perl-business-issn
+			bool	"perl-business-issn 1.004"
+			default	n
+
+			config	CONFIG_perl-class-accessor
+			bool	"perl-class-accessor 0.51"
+			default	n
+
+			config	CONFIG_perl-data-compare
+			bool	"perl-data-compare 1.27"
+			default	n
+
+			config	CONFIG_perl-data-dump
+			bool	"perl-data-dump 1.25"
+			default	n
+
+			config	CONFIG_perl-data-uniqid
+			bool	"perl-data-uniqid 0.12"
+			default	n
+
+			config	CONFIG_perl-datetime-calendar-julian
+			bool	"perl-datetime-calendar-julian 0.104"
+			default	n
+
+			config	CONFIG_perl-datetime-format-builder
+			bool	"perl-datetime-format-builder 0.83"
+			default	n
+
+			config	CONFIG_perl-encode-eucjpascii
+			bool	"perl-encode-eucjpascii 0.03"
+			default	n
+
+			config	CONFIG_perl-encode-hanextra
+			bool	"perl-encode-hanextra 0.23"
+			default	n
+
+			config	CONFIG_perl-encode-jis2k
+			bool	"perl-encode-jis2k 0.03"
+			default	n
+
+			config	CONFIG_perl-file-slurper
+			bool	"perl-file-slurper 0.012"
+			default	n
+
+			config	CONFIG_perl-file-which
+			bool	"perl-file-which 1.27"
+			default	n
+
+			config	CONFIG_perl-html-parser
+			bool	"perl-html-parser 3.76"
+			default	n
+
+			config	CONFIG_perl-http-daemon
+			bool	"perl-http-daemon 6.12"
+			default	n
+
+			config	CONFIG_perl-io-socket-ssl
+			bool	"perl-io-socket-ssl 2.072"
+			default	n
+
+			config	CONFIG_perl-io-string
+			bool	"perl-io-string 1.08"
+			default	n
+
+			config	CONFIG_perl-ipc-run3
+			bool	"perl-ipc-run3 0.048"
+			default	n
+
+			config	CONFIG_perl-lingua-translit
+			bool	"perl-lingua-translit 0.28"
+			default	n
+
+			config	CONFIG_perl-list-allutils
+			bool	"perl-list-allutils 0.19"
+			default	n
+
+			config	CONFIG_perl-list-moreutils
+			bool	"perl-list-moreutils 0.430"
+			default	n
+
+			config	CONFIG_perl-log-log4perl
+			bool	"perl-log-log4perl 1.54"
+			default	n
+
+			config	CONFIG_perl-lwp-protocol-https
+			bool	"perl-lwp-protocol-https 6.10"
+			default	n
+
+			config	CONFIG_perl-module-build
+			bool	"perl-module-build 0.4231"
+			default	n
+
+			config	CONFIG_perl-net-dns
+			bool	"perl-net-dns 1.32"
+			default	n
+
+			config	CONFIG_perl-parse-recdescent
+			bool	"perl-parse-recdescent 1.967015"
+			default	n
+
+			config	CONFIG_perl-parse-yapp
+			bool	"perl-parse-yapp 1.21"
+			default	n
+
+			config	CONFIG_perl-perlio-utf8_strict
+			bool	"perl-perlio-utf8_strict 0.008"
+			default	n
+
+			config	CONFIG_perl-regexp-common
+			bool	"perl-regexp-common 2017060201"
+			default	n
+
+			config	CONFIG_perl-sgmlspm
+			bool	"perl-sgmlspm 1.1"
+			default	n
+
+			config	CONFIG_perl-sort-key
+			bool	"perl-sort-key 1.33"
+			default	n
+
+			config	CONFIG_perl-test-command
+			bool	"perl-test-command 0.11"
+			default	n
+
+			config	CONFIG_perl-test-differences
+			bool	"perl-test-differences 0.68"
+			default	n
+
+			config	CONFIG_perl-text-bibtex
+			bool	"perl-text-bibtex 0.88"
+			default	n
+
+			config	CONFIG_perl-text-csv
+			bool	"perl-text-csv 2.01"
+			default	n
+
+			config	CONFIG_perl-text-roman
+			bool	"perl-text-roman 3.5"
+			default	n
+
+			config	CONFIG_perl-unicode-collate
+			bool	"perl-unicode-collate 1.31"
+			default	n
+
+			config	CONFIG_perl-unicode-linebreak
+			bool	"perl-unicode-linebreak 2019.001"
+			default	n
+
+			config	CONFIG_perl-uri
+			bool	"perl-uri 5.09"
+			default	n
+
+			config	CONFIG_perl-xml-libxml-simple
+			bool	"perl-xml-libxml-simple 1.01"
+			default	n
+
+			config	CONFIG_perl-xml-libxslt
+			bool	"perl-xml-libxslt 1.99"
+			default	n
+
+			config	CONFIG_perl-xml-simple
+			bool	"perl-xml-simple 2.25"
+			default	n
+
+			config	CONFIG_perl-xml-writer
+			bool	"perl-xml-writer 0.900"
+			default	n
+
+		endmenu
+
+		config	CONFIG_php
+		bool	"php 8.0.10"
+		default	n
+
+		config	MENU_Python_Modules
+		bool	"Python Modules"
+		default	n
+
+		menu "Python Modules"
+		depends on MENU_Python_Modules
+
+			config	CONFIG_Jinja2
+			bool	"Jinja2 3.0.1"
+			default	n
+
+			config	CONFIG_PyYAML
+			bool	"PyYAML 5.3.1"
+			default	n
+
+			config	CONFIG_dbus-python
+			bool	"dbus-python 1.2.18"
+			default	n
+
+			config	CONFIG_decorator
+			bool	"decorator 5.0.9"
+			default	n
+
+			config	CONFIG_libxml2py2
+			bool	"libxml2py2 2.9.12 module"
+			default	n
+
+			config	CONFIG_lxml
+			bool	"lxml 4.6.3"
+			default	n
+
+			config	CONFIG_py3c
+			bool	"py3c 1.3.1"
+			default	n
+
+			config	CONFIG_pyatspi2
+			bool	"pyatspi2 2.38.1"
+			default	n
+
+			config	CONFIG_pycryptodome
+			bool	"pycryptodome 3.10.1"
+			default	n
+
+			config	CONFIG_pygments
+			bool	"pygments 2.10.0"
+			default	n
+
+			config	CONFIG_python-dbusmock
+			bool	"python-dbusmock 0.23.1"
+			default	n
+
+			config	CONFIG_python-slip
+			bool	"python-slip 0.6.5"
+			default	n
+
+			config	CONFIG_pyxdg
+			bool	"pyxdg 0.27"
+			default	n
+
+			config	CONFIG_scour
+			bool	"scour 0.38.2"
+			default	n
+
+			config	CONFIG_six
+			bool	"six 1.16.0"
+			default	n
+
+		endmenu
+
+		config	CONFIG_ruby
+		bool	"ruby 3.0.2"
+		default	n
+
+		config	CONFIG_scons
+		bool	"scons 4.2.0"
+		default	n
+
+		config	CONFIG_slang
+		bool	"slang 2.3.2"
+		default	n
+
+		config	CONFIG_subversion
+		bool	"subversion 1.14.1"
+		default	n
+
+		config	CONFIG_swig
+		bool	"swig 4.0.2"
+		default	n
+
+		config	CONFIG_sysprof
+		bool	"sysprof 3.40.1"
+		default	n
+
+		config	CONFIG_tk
+		bool	"tk 8.6.11.1"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_basicnet
+bool	"Networking"
+default	n
+
+menu "Networking"
+depends on MENU_basicnet
+
+	config	MENU_basicnet-connect
+	bool	"Connecting to a Network"
+	default	n
+
+	menu "Connecting to a Network"
+	depends on MENU_basicnet-connect
+
+		config	CONFIG_dhcp
+		bool	"dhcp 4.4.2-P1"
+		default	n
+
+		config	CONFIG_dhcpcd
+		bool	"dhcpcd 9.4.0"
+		default	n
+
+	endmenu
+
+	config	MENU_netprogs
+	bool	"Networking Programs"
+	default	n
+
+	menu "Networking Programs"
+	depends on MENU_netprogs
+
+		config	CONFIG_bridgeutils
+		bool	"bridgeutils 1.7.1"
+		default	n
+
+		config	CONFIG_cifsutils
+		bool	"cifsutils 6.13"
+		default	n
+
+		config	CONFIG_iw
+		bool	"iw 5.9"
+		default	n
+
+		config	CONFIG_ncftp
+		bool	"ncftp 3.2.6"
+		default	n
+
+		config	CONFIG_net-tools
+		bool	"net-tools 2.10"
+		default	n
+
+		config	CONFIG_nfs-utils
+		bool	"nfs-utils 2.5.4"
+		default	n
+
+		config	CONFIG_ntp
+		bool	"ntp 4.2.8p15"
+		default	n
+
+		config	CONFIG_rpcbind
+		bool	"rpcbind 1.2.6"
+		default	n
+
+		config	CONFIG_rsync
+		bool	"rsync 3.2.3"
+		default	n
+
+		config	CONFIG_samba
+		bool	"samba 4.14.7"
+		default	n
+
+	endmenu
+
+	config	MENU_netutils
+	bool	"Networking Utilities"
+	default	n
+
+	menu "Networking Utilities"
+	depends on MENU_netutils
+
+		config	CONFIG_avahi
+		bool	"avahi 0.8"
+		default	n
+
+		config	CONFIG_bind-utils
+		bool	"bind-utils 9.16.20"
+		default	n
+
+		config	CONFIG_nmap
+		bool	"nmap 7.92"
+		default	n
+
+		config	CONFIG_traceroute
+		bool	"traceroute 2.1.0"
+		default	n
+
+		config	CONFIG_whois
+		bool	"whois 5.4.3"
+		default	n
+
+		config	CONFIG_wireshark
+		bool	"wireshark 3.4.8"
+		default	n
+
+	endmenu
+
+	config	MENU_basicnet-netlibs
+	bool	"Networking Libraries"
+	default	n
+
+	menu "Networking Libraries"
+	depends on MENU_basicnet-netlibs
+
+		config	CONFIG_geoclue2
+		bool	"geoclue2 2.5.7"
+		default	n
+
+		config	CONFIG_ldns
+		bool	"ldns 1.7.1"
+		default	n
+
+		config	CONFIG_libmnl
+		bool	"libmnl 1.0.4"
+		default	n
+
+		config	CONFIG_libnsl
+		bool	"libnsl 1.3.0"
+		default	n
+
+		config	CONFIG_libpcap
+		bool	"libpcap 1.10.1"
+		default	n
+
+		config	CONFIG_libtirpc
+		bool	"libtirpc 1.3.2"
+		default	n
+
+		config	CONFIG_rpcsvc-proto
+		bool	"rpcsvc-proto 1.4.2"
+		default	n
+
+		config	CONFIG_serf
+		bool	"serf 1.3.9"
+		default	n
+
+		config	CONFIG_uhttpmock
+		bool	"uhttpmock 0.5.3"
+		default	n
+
+	endmenu
+
+	config	MENU_basicnet-textweb
+	bool	"Text Web Browsers"
+	default	n
+
+	menu "Text Web Browsers"
+	depends on MENU_basicnet-textweb
+
+		config	CONFIG_Links
+		bool	"Links 2.23"
+		default	n
+
+		config	CONFIG_lynx
+		bool	"lynx 2.8.9rel.1"
+		default	n
+
+	endmenu
+
+	config	MENU_basicnet-mailnews
+	bool	"Mail/News Clients"
+	default	n
+
+	menu "Mail/News Clients"
+	depends on MENU_basicnet-mailnews
+
+		config	CONFIG_fetchmail
+		bool	"fetchmail 6.4.21"
+		default	n
+
+		config	CONFIG_mailx
+		bool	"mailx 12.5"
+		default	n
+
+		config	CONFIG_mutt
+		bool	"mutt 2.1.2"
+		default	n
+
+		config	CONFIG_procmail
+		bool	"procmail 3.22"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_server
+bool	"Servers"
+default	n
+
+menu "Servers"
+depends on MENU_server
+
+	config	MENU_server-major
+	bool	"Major Servers"
+	default	n
+
+	menu "Major Servers"
+	depends on MENU_server-major
+
+		config	CONFIG_apache
+		bool	"apache 2.4.48"
+		default	n
+
+		config	CONFIG_bind
+		bool	"bind 9.16.20"
+		default	n
+
+		config	CONFIG_proftpd
+		bool	"proftpd 1.3.7c"
+		default	n
+
+		config	CONFIG_vsftpd
+		bool	"vsftpd 3.0.5"
+		default	n
+
+	endmenu
+
+	config	MENU_server-mail
+	bool	"Mail Server Software"
+	default	n
+
+	menu "Mail Server Software"
+	depends on MENU_server-mail
+
+		config	CONFIG_dovecot
+		bool	"dovecot 2.3.16"
+		default	n
+
+		config	CONFIG_exim
+		bool	"exim 4.94.2"
+		default	n
+
+		config	CONFIG_postfix
+		bool	"postfix 3.6.2"
+		default	n
+
+		config	CONFIG_sendmail
+		bool	"sendmail 8.17.1"
+		default	n
+
+	endmenu
+
+	config	MENU_server-databases
+	bool	"Databases"
+	default	n
+
+	menu "Databases"
+	depends on MENU_server-databases
+
+		config	CONFIG_db
+		bool	"db 5.3.28"
+		default	n
+
+		config	CONFIG_lmdb
+		bool	"lmdb 0.9.29"
+		default	n
+
+		config	CONFIG_mariadb
+		bool	"mariadb 10.6.4"
+		default	n
+
+	endmenu
+
+	config	MENU_server-other
+	bool	"Other Server Software"
+	default	n
+
+	menu "Other Server Software"
+	depends on MENU_server-other
+
+		config	CONFIG_unbound
+		bool	"unbound 1.13.2"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_x
+bool	"X + Window and Display Managers"
+default	n
+
+menu "X + Window and Display Managers"
+depends on MENU_x
+
+	config	MENU_x-window-system
+	bool	"X Window System Environment"
+	default	n
+
+	menu "X Window System Environment"
+	depends on MENU_x-window-system
+
+		config	CONFIG_libXdmcp
+		bool	"libXdmcp 1.1.3"
+		default	n
+
+		config	MENU_Xorg_Drivers
+		bool	"Xorg Drivers"
+		default	n
+
+		menu "Xorg Drivers"
+		depends on MENU_Xorg_Drivers
+
+			config	CONFIG_xorg-amdgpu-driver
+			bool	"xorg-amdgpu-driver 21.0.0"
+			default	n
+
+			config	CONFIG_xorg-ati-driver
+			bool	"xorg-ati-driver 19.1.0"
+			default	n
+
+			config	CONFIG_xorg-intel-driver
+			bool	"xorg-intel-driver 20210222"
+			default	n
+
+			config	CONFIG_xorg-synaptics-driver
+			bool	"xorg-synaptics-driver 1.9.1"
+			default	n
+
+			config	CONFIG_xorg-vmware-driver
+			bool	"xorg-vmware-driver 13.3.0"
+			default	n
+
+			config	CONFIG_xorg-wacom-driver
+			bool	"xorg-wacom-driver 0.40.0"
+			default	n
+
+		endmenu
+
+		config	MENU_xorg7-legacy
+		bool	"xorg7-legacy"
+		default	n
+
+		menu "xorg7-legacy"
+		depends on MENU_xorg7-legacy
+
+			config	CONFIG_bdftopcf
+			bool	"bdftopcf 1.1"
+			default	y
+
+			config	CONFIG_font-adobe-100dpi
+			bool	"font-adobe-100dpi 1.0.3"
+			default	y
+
+			config	CONFIG_font-adobe-75dpi
+			bool	"font-adobe-75dpi 1.0.3"
+			default	y
+
+			config	CONFIG_font-jis-misc
+			bool	"font-jis-misc 1.0.3"
+			default	y
+
+			config	CONFIG_font-daewoo-misc
+			bool	"font-daewoo-misc 1.0.3"
+			default	y
+
+			config	CONFIG_font-isas-misc
+			bool	"font-isas-misc 1.0.3"
+			default	y
+
+			config	CONFIG_font-misc-misc
+			bool	"font-misc-misc 1.1.2"
+			default	y
+
+		endmenu
+
+	endmenu
+
+	config	MENU_x-lib
+	bool	"X Libraries"
+	default	n
+
+	menu "X Libraries"
+	depends on MENU_x-lib
+
+		config	CONFIG_amtk
+		bool	"amtk 5.2.0"
+		default	n
+
+		config	CONFIG_clutter
+		bool	"clutter 1.26.4"
+		default	n
+
+		config	CONFIG_clutter-gst
+		bool	"clutter-gst 3.0.27"
+		default	n
+
+		config	CONFIG_clutter-gtk
+		bool	"clutter-gtk 1.8.4"
+		default	n
+
+		config	CONFIG_cogl
+		bool	"cogl 1.22.8"
+		default	n
+
+		config	CONFIG_colord-gtk
+		bool	"colord-gtk 0.2.0"
+		default	n
+
+		config	CONFIG_fltk
+		bool	"fltk 1.3.7"
+		default	n
+
+		config	CONFIG_freeglut
+		bool	"freeglut 3.2.1"
+		default	n
+
+		config	CONFIG_gdl
+		bool	"gdl 3.40.0"
+		default	n
+
+		config	CONFIG_glew
+		bool	"glew 2.2.0"
+		default	n
+
+		config	CONFIG_goffice010
+		bool	"goffice010 0.10.50"
+		default	n
+
+		config	CONFIG_graphene
+		bool	"graphene 1.10.6"
+		default	n
+
+		config	CONFIG_gtk-engines
+		bool	"gtk-engines 2.20.2"
+		default	n
+
+		config	CONFIG_gtk-vnc
+		bool	"gtk-vnc 1.2.0"
+		default	n
+
+		config	CONFIG_gtk4
+		bool	"gtk4 4.4.0"
+		default	n
+
+		config	CONFIG_gtkmm2
+		bool	"gtkmm2 2.24.5"
+		default	n
+
+		config	CONFIG_gtksourceview
+		bool	"gtksourceview 3.24.11"
+		default	n
+
+		config	CONFIG_gtksourceview4
+		bool	"gtksourceview4 4.8.1"
+		default	n
+
+		config	CONFIG_gtksourceview5
+		bool	"gtksourceview5 5.0.0"
+		default	n
+
+		config	CONFIG_keybinder3
+		bool	"keybinder3 3.0-0.3.2"
+		default	n
+
+		config	CONFIG_libdazzle
+		bool	"libdazzle 3.40.0"
+		default	n
+
+		config	CONFIG_libxklavier
+		bool	"libxklavier 5.4"
+		default	n
+
+		config	CONFIG_qt5
+		bool	"qt5 5.15.2"
+		default	n
+
+		config	CONFIG_qtwebengine
+		bool	"qtwebengine 5.15.6"
+		default	n
+
+		config	CONFIG_tepl
+		bool	"tepl 6.00.0"
+		default	n
+
+		config	CONFIG_webkitgtk
+		bool	"webkitgtk 2.32.3"
+		default	n
+
+	endmenu
+
+	config	MENU_x-dm
+	bool	"Display Managers"
+	default	n
+
+	menu "Display Managers"
+	depends on MENU_x-dm
+
+		config	CONFIG_lightdm
+		bool	"lightdm 1.30.0"
+		default	n
+
+		config	CONFIG_lxdm
+		bool	"lxdm 0.5.3"
+		default	n
+
+	endmenu
+
+	config	MENU_x-wm
+	bool	"Window Managers"
+	default	n
+
+	menu "Window Managers"
+	depends on MENU_x-wm
+
+		config	CONFIG_fluxbox
+		bool	"fluxbox 1.3.7"
+		default	n
+
+		config	CONFIG_icewm
+		bool	"icewm 2.7.0"
+		default	n
+
+		config	CONFIG_sawfish
+		bool	"sawfish 1.12.0"
+		default	n
+
+	endmenu
+
+	config	MENU_x-icons
+	bool	"Icons"
+	default	n
+
+	menu "Icons"
+	depends on MENU_x-icons
+
+		config	CONFIG_adwaita-icon-theme
+		bool	"adwaita-icon-theme 40.1.1"
+		default	n
+
+		config	CONFIG_breeze-icons
+		bool	"breeze-icons 5.85.0"
+		default	n
+
+		config	CONFIG_gnome-icon-theme
+		bool	"gnome-icon-theme 3.12.0"
+		default	n
+
+		config	CONFIG_gnome-icon-theme-extras
+		bool	"gnome-icon-theme-extras 3.12.0"
+		default	n
+
+		config	CONFIG_gnome-icon-theme-symbolic
+		bool	"gnome-icon-theme-symbolic 3.12.0"
+		default	n
+
+		config	CONFIG_gnome-themes-extra
+		bool	"gnome-themes-extra 3.28"
+		default	n
+
+		config	CONFIG_hicolor-icon-theme
+		bool	"hicolor-icon-theme 0.17"
+		default	n
+
+		config	CONFIG_icon-naming-utils
+		bool	"icon-naming-utils 0.8.90"
+		default	n
+
+		config	CONFIG_oxygen-icons5
+		bool	"oxygen-icons5 5.85.0"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_kde
+bool	"KDE"
+default	n
+
+menu "KDE"
+depends on MENU_kde
+
+	config	MENU_kde-prereq
+	bool	"Introduction to KDE"
+	default	n
+
+	menu "Introduction to KDE"
+	depends on MENU_kde-prereq
+
+		config	CONFIG_extra-cmake-modules
+		bool	"extra-cmake-modules 5.85.0"
+		default	n
+
+		config	CONFIG_libdbusmenu-qt
+		bool	"libdbusmenu-qt 0.9.3+16.04.20160218"
+		default	n
+
+		config	CONFIG_phonon
+		bool	"phonon 4.11.1"
+		default	n
+
+		config	CONFIG_phonon-backend-gstreamer
+		bool	"phonon-backend-gstreamer 4.10.0"
+		default	n
+
+		config	CONFIG_phonon-backend-vlc
+		bool	"phonon-backend-vlc 0.11.3"
+		default	n
+
+		config	CONFIG_plasma-wayland-protocols
+		bool	"plasma-wayland-protocols 1.3.0"
+		default	n
+
+		config	CONFIG_polkit-qt
+		bool	"polkit-qt 0.114.0"
+		default	n
+
+	endmenu
+
+	config	MENU_kf5
+	bool	"KDE Frameworks 5"
+	default	n
+
+	menu "KDE Frameworks 5"
+	depends on MENU_kf5
+
+		config	CONFIG_kf5-frameworks
+		bool	"kf5-frameworks 5.85.0"
+		default	n
+
+		config	CONFIG_kf5-intro
+		bool	"kf5-intro 1.0.0"
+		default	n
+
+	endmenu
+
+	config	MENU_kf5-apps
+	bool	"KDE Frameworks 5 Based Applications"
+	default	n
+
+	menu "KDE Frameworks 5 Based Applications"
+	depends on MENU_kf5-apps
+
+		config	CONFIG_ark5
+		bool	"ark5 21.08.0"
+		default	n
+
+		config	CONFIG_gwenview5
+		bool	"gwenview5 21.08.0"
+		default	n
+
+		config	CONFIG_k3b
+		bool	"k3b 21.08.0"
+		default	n
+
+		config	CONFIG_kdenlive5
+		bool	"kdenlive5 21.08.0"
+		default	n
+
+		config	CONFIG_khelpcenter
+		bool	"khelpcenter 21.08.0"
+		default	n
+
+		config	CONFIG_kmix5
+		bool	"kmix5 21.08.0"
+		default	n
+
+		config	CONFIG_konsole5
+		bool	"konsole5 21.08.0"
+		default	n
+
+		config	CONFIG_libkcddb
+		bool	"libkcddb 21.08.0"
+		default	n
+
+		config	CONFIG_libkdcraw
+		bool	"libkdcraw 21.08.0"
+		default	n
+
+		config	CONFIG_libkexiv2
+		bool	"libkexiv2 21.08.0"
+		default	n
+
+		config	CONFIG_okular5
+		bool	"okular5 21.08.0"
+		default	n
+
+	endmenu
+
+	config	MENU_plasma5
+	bool	"KDE Plasma 5"
+	default	n
+
+	menu "KDE Plasma 5"
+	depends on MENU_plasma5
+
+		config	CONFIG_plasma5-build
+		bool	"plasma5-build 5.22.4"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_gnome
+bool	"GNOME"
+default	n
+
+menu "GNOME"
+depends on MENU_gnome
+
+	config	MENU_gnome-core
+	bool	"GNOME Libraries and Desktop"
+	default	n
+
+	menu "GNOME Libraries and Desktop"
+	depends on MENU_gnome-core
+
+		config	CONFIG_GConf
+		bool	"GConf 3.2.6"
+		default	n
+
+		config	CONFIG_dconf
+		bool	"dconf 0.40.0"
+		default	n
+
+		config	CONFIG_evolution-data-server
+		bool	"evolution-data-server 3.40.4"
+		default	n
+
+		config	CONFIG_folks
+		bool	"folks 0.15.3"
+		default	n
+
+		config	CONFIG_gdm
+		bool	"gdm 40.1"
+		default	n
+
+		config	CONFIG_geocode-glib
+		bool	"geocode-glib 3.26.2"
+		default	n
+
+		config	CONFIG_gfbgraph
+		bool	"gfbgraph 0.2.4"
+		default	n
+
+		config	CONFIG_gjs
+		bool	"gjs 1.68.3"
+		default	n
+
+		config	CONFIG_gnome-backgrounds
+		bool	"gnome-backgrounds 40.1"
+		default	n
+
+		config	CONFIG_gnome-bluetooth
+		bool	"gnome-bluetooth 3.34.5"
+		default	n
+
+		config	CONFIG_gnome-control-center
+		bool	"gnome-control-center 40.0"
+		default	n
+
+		config	CONFIG_gnome-menus
+		bool	"gnome-menus 3.36.0"
+		default	n
+
+		config	CONFIG_gnome-online-accounts
+		bool	"gnome-online-accounts 3.40.0"
+		default	n
+
+		config	CONFIG_gnome-session
+		bool	"gnome-session 40.1.1"
+		default	n
+
+		config	CONFIG_gnome-settings-daemon
+		bool	"gnome-settings-daemon 40.0.1"
+		default	n
+
+		config	CONFIG_gnome-shell
+		bool	"gnome-shell 40.4"
+		default	n
+
+		config	CONFIG_gnome-shell-extensions
+		bool	"gnome-shell-extensions 40.4"
+		default	n
+
+		config	CONFIG_gnome-user-docs
+		bool	"gnome-user-docs 40.4"
+		default	n
+
+		config	CONFIG_gnome-video-effects
+		bool	"gnome-video-effects 0.5.0"
+		default	n
+
+		config	CONFIG_grilo
+		bool	"grilo 0.3.13"
+		default	n
+
+		config	CONFIG_gsound
+		bool	"gsound 1.0.3"
+		default	n
+
+		config	CONFIG_gvfs
+		bool	"gvfs 1.48.1"
+		default	n
+
+		config	CONFIG_libchamplain
+		bool	"libchamplain 0.12.20"
+		default	n
+
+		config	CONFIG_libgdata
+		bool	"libgdata 0.18.1"
+		default	n
+
+		config	CONFIG_libgee
+		bool	"libgee 0.20.4"
+		default	n
+
+		config	CONFIG_libgtop
+		bool	"libgtop 2.40.0"
+		default	n
+
+		config	CONFIG_libgweather
+		bool	"libgweather 40.0"
+		default	n
+
+		config	CONFIG_libpeas
+		bool	"libpeas 1.30.0"
+		default	n
+
+		config	CONFIG_libwnck
+		bool	"libwnck 40.0"
+		default	n
+
+		config	CONFIG_mutter
+		bool	"mutter 40.4"
+		default	n
+
+		config	CONFIG_rest
+		bool	"rest 0.8.1"
+		default	n
+
+		config	CONFIG_totem-pl-parser
+		bool	"totem-pl-parser 3.26.6"
+		default	n
+
+		config	CONFIG_vte
+		bool	"vte 0.64.2"
+		default	n
+
+		config	CONFIG_yelp
+		bool	"yelp 40.3"
+		default	n
+
+		config	CONFIG_yelp-xsl
+		bool	"yelp-xsl 40.2"
+		default	n
+
+		config	CONFIG_zenity
+		bool	"zenity 3.32.0"
+		default	n
+
+	endmenu
+
+	config	MENU_gnome-applications
+	bool	"GNOME Applications"
+	default	n
+
+	menu "GNOME Applications"
+	depends on MENU_gnome-applications
+
+		config	CONFIG_baobab
+		bool	"baobab 40.0"
+		default	n
+
+		config	CONFIG_brasero
+		bool	"brasero 3.12.2"
+		default	n
+
+		config	CONFIG_cheese
+		bool	"cheese 3.38.0"
+		default	n
+
+		config	CONFIG_eog
+		bool	"eog 40.3"
+		default	n
+
+		config	CONFIG_evince
+		bool	"evince 40.4"
+		default	n
+
+		config	CONFIG_evolution
+		bool	"evolution 3.40.4"
+		default	n
+
+		config	CONFIG_file-roller
+		bool	"file-roller 3.40.0"
+		default	n
+
+		config	CONFIG_gnome-calculator
+		bool	"gnome-calculator 40.1"
+		default	n
+
+		config	CONFIG_gnome-color-manager
+		bool	"gnome-color-manager 3.36.0"
+		default	n
+
+		config	CONFIG_gnome-disk-utility
+		bool	"gnome-disk-utility 40.2"
+		default	n
+
+		config	CONFIG_gnome-maps
+		bool	"gnome-maps 40.4"
+		default	n
+
+		config	CONFIG_gnome-nettool
+		bool	"gnome-nettool 3.8.1"
+		default	n
+
+		config	CONFIG_gnome-power-manager
+		bool	"gnome-power-manager 3.32.0"
+		default	n
+
+		config	CONFIG_gnome-system-monitor
+		bool	"gnome-system-monitor 40.1"
+		default	n
+
+		config	CONFIG_gnome-terminal
+		bool	"gnome-terminal 3.40.3"
+		default	n
+
+		config	CONFIG_gnome-tweaks
+		bool	"gnome-tweaks 40.0"
+		default	n
+
+		config	CONFIG_gnome-weather
+		bool	"gnome-weather 40.1"
+		default	n
+
+		config	CONFIG_gucharmap
+		bool	"gucharmap 13.0.8"
+		default	n
+
+		config	CONFIG_seahorse
+		bool	"seahorse 40.0"
+		default	n
+
+		config	CONFIG_vinagre
+		bool	"vinagre 3.22.0"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_xfce
+bool	"Xfce"
+default	n
+
+menu "Xfce"
+depends on MENU_xfce
+
+	config	MENU_xfce-core
+	bool	"Xfce Desktop"
+	default	n
+
+	menu "Xfce Desktop"
+	depends on MENU_xfce-core
+
+		config	CONFIG_exo
+		bool	"exo 4.16.2"
+		default	n
+
+		config	CONFIG_garcon
+		bool	"garcon 4.16.1"
+		default	n
+
+		config	CONFIG_libxfce4ui
+		bool	"libxfce4ui 4.16.0"
+		default	n
+
+		config	CONFIG_libxfce4util
+		bool	"libxfce4util 4.16.0"
+		default	n
+
+		config	CONFIG_thunar
+		bool	"thunar 4.16.8"
+		default	n
+
+		config	CONFIG_thunar-volman
+		bool	"thunar-volman 4.16.0"
+		default	n
+
+		config	CONFIG_tumbler
+		bool	"tumbler 4.16.0"
+		default	n
+
+		config	CONFIG_xfce4-appfinder
+		bool	"xfce4-appfinder 4.16.1"
+		default	n
+
+		config	CONFIG_xfce4-panel
+		bool	"xfce4-panel 4.16.3"
+		default	n
+
+		config	CONFIG_xfce4-power-manager
+		bool	"xfce4-power-manager 4.16.0"
+		default	n
+
+		config	CONFIG_xfce4-session
+		bool	"xfce4-session 4.16.0"
+		default	n
+
+		config	CONFIG_xfce4-settings
+		bool	"xfce4-settings 4.16.2"
+		default	n
+
+		config	CONFIG_xfconf
+		bool	"xfconf 4.16.0"
+		default	n
+
+		config	CONFIG_xfdesktop
+		bool	"xfdesktop 4.16.0"
+		default	n
+
+		config	CONFIG_xfwm4
+		bool	"xfwm4 4.16.1"
+		default	n
+
+	endmenu
+
+	config	MENU_xfce-apps
+	bool	"Xfce Applications"
+	default	n
+
+	menu "Xfce Applications"
+	depends on MENU_xfce-apps
+
+		config	CONFIG_parole
+		bool	"parole 4.16.0"
+		default	n
+
+		config	CONFIG_ristretto
+		bool	"ristretto 0.11.0"
+		default	n
+
+		config	CONFIG_xfburn
+		bool	"xfburn 0.6.2"
+		default	n
+
+		config	CONFIG_xfce4-notifyd
+		bool	"xfce4-notifyd 0.6.2"
+		default	n
+
+		config	CONFIG_xfce4-pulseaudio-plugin
+		bool	"xfce4-pulseaudio-plugin 0.4.3"
+		default	n
+
+		config	CONFIG_xfce4-terminal
+		bool	"xfce4-terminal 0.8.10"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_xsoft
+bool	"X Software"
+default	n
+
+menu "X Software"
+depends on MENU_xsoft
+
+	config	MENU_xsoft-office
+	bool	"Office Programs"
+	default	n
+
+	menu "Office Programs"
+	depends on MENU_xsoft-office
+
+		config	CONFIG_abiword
+		bool	"abiword 3.0.5"
+		default	n
+
+		config	CONFIG_gnumeric
+		bool	"gnumeric 1.12.50"
+		default	n
+
+	endmenu
+
+	config	MENU_xsoft-graphweb
+	bool	"Graphical Web Browsers"
+	default	n
+
+	menu "Graphical Web Browsers"
+	depends on MENU_xsoft-graphweb
+
+		config	CONFIG_epiphany
+		bool	"epiphany 40.3"
+		default	n
+
+		config	CONFIG_falkon
+		bool	"falkon 3.1.0"
+		default	n
+
+		config	CONFIG_firefox-legacy
+		bool	"firefox-legacy 78.13.0 Legacy"
+		default	n
+
+		config	CONFIG_seamonkey
+		bool	"seamonkey 2.53.9"
+		default	n
+
+	endmenu
+
+	config	MENU_xsoft-other
+	bool	"Other X-based Programs"
+	default	n
+
+	menu "Other X-based Programs"
+	depends on MENU_xsoft-other
+
+		config	CONFIG_balsa
+		bool	"balsa 2.6.3"
+		default	n
+
+		config	CONFIG_feh
+		bool	"feh 3.7.1"
+		default	n
+
+		config	CONFIG_fontforge
+		bool	"fontforge 20201107"
+		default	n
+
+		config	CONFIG_gimp
+		bool	"gimp 2.10.24"
+		default	n
+
+		config	CONFIG_hexchat
+		bool	"hexchat 2.14.3"
+		default	n
+
+		config	CONFIG_inkscape
+		bool	"inkscape 1.1"
+		default	n
+
+		config	CONFIG_pidgin
+		bool	"pidgin 2.14.6"
+		default	n
+
+		config	CONFIG_rox-filer
+		bool	"rox-filer 2.11"
+		default	n
+
+		config	CONFIG_rxvt-unicode
+		bool	"rxvt-unicode 9.26"
+		default	n
+
+		config	CONFIG_thunderbird
+		bool	"thunderbird 91.0.3"
+		default	n
+
+		config	CONFIG_tigervnc
+		bool	"tigervnc 1.11.0"
+		default	n
+
+		config	CONFIG_transmission
+		bool	"transmission 3.00"
+		default	n
+
+		config	CONFIG_xarchiver
+		bool	"xarchiver 0.5.4.17"
+		default	n
+
+		config	CONFIG_xdg-utils
+		bool	"xdg-utils 1.1.3"
+		default	n
+
+		config	CONFIG_xscreensaver
+		bool	"xscreensaver 6.01"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_multimedia
+bool	"Multimedia"
+default	n
+
+menu "Multimedia"
+depends on MENU_multimedia
+
+	config	MENU_multimedia-libdriv
+	bool	"Multimedia Libraries and Drivers"
+	default	n
+
+	menu "Multimedia Libraries and Drivers"
+	depends on MENU_multimedia-libdriv
+
+		config	CONFIG_alsa
+		bool	"alsa 1.2.5"
+		default	n
+
+		config	CONFIG_alsa-firmware
+		bool	"alsa-firmware 1.2.4"
+		default	n
+
+		config	CONFIG_alsa-oss
+		bool	"alsa-oss 1.1.8"
+		default	n
+
+		config	CONFIG_alsa-plugins
+		bool	"alsa-plugins 1.2.5"
+		default	n
+
+		config	CONFIG_alsa-tools
+		bool	"alsa-tools 1.2.5"
+		default	n
+
+		config	CONFIG_alsa-utils
+		bool	"alsa-utils 1.2.5.1"
+		default	n
+
+		config	CONFIG_audiofile
+		bool	"audiofile 0.3.6"
+		default	n
+
+		config	CONFIG_faac
+		bool	"faac 1_30"
+		default	n
+
+		config	CONFIG_faad2
+		bool	"faad2 2_10_0"
+		default	n
+
+		config	CONFIG_flac
+		bool	"flac 1.3.3"
+		default	n
+
+		config	CONFIG_frei0r
+		bool	"frei0r 1.7.0"
+		default	n
+
+		config	CONFIG_gavl
+		bool	"gavl 1.4.0"
+		default	n
+
+		config	CONFIG_gst10-plugins-bad
+		bool	"gst10-plugins-bad 1.18.4"
+		default	n
+
+		config	CONFIG_gst10-plugins-good
+		bool	"gst10-plugins-good 1.18.4"
+		default	n
+
+		config	CONFIG_gst10-plugins-ugly
+		bool	"gst10-plugins-ugly 1.18.4"
+		default	n
+
+		config	CONFIG_gstreamer10-vaapi
+		bool	"gstreamer10-vaapi 1.18.4"
+		default	n
+
+		config	CONFIG_id3lib
+		bool	"id3lib 3.8.3"
+		default	n
+
+		config	CONFIG_liba52
+		bool	"liba52 0.7.4"
+		default	n
+
+		config	CONFIG_libao
+		bool	"libao 1.2.0"
+		default	n
+
+		config	CONFIG_libcddb
+		bool	"libcddb 1.3.2"
+		default	n
+
+		config	CONFIG_libcdio
+		bool	"libcdio 2.1.0"
+		default	n
+
+		config	CONFIG_libdiscid
+		bool	"libdiscid 0.6.2"
+		default	n
+
+		config	CONFIG_libdv
+		bool	"libdv 1.0.0"
+		default	n
+
+		config	CONFIG_libdvdcss
+		bool	"libdvdcss 1.4.3"
+		default	n
+
+		config	CONFIG_libdvdnav
+		bool	"libdvdnav 6.1.1"
+		default	n
+
+		config	CONFIG_libdvdread
+		bool	"libdvdread 6.1.2"
+		default	n
+
+		config	CONFIG_libmad
+		bool	"libmad 0.15.1b"
+		default	n
+
+		config	CONFIG_libmpeg2
+		bool	"libmpeg2 0.5.1"
+		default	n
+
+		config	CONFIG_libmusicbrainz
+		bool	"libmusicbrainz 2.1.5"
+		default	n
+
+		config	CONFIG_libmusicbrainz5
+		bool	"libmusicbrainz5 5.1.0"
+		default	n
+
+		config	CONFIG_libquicktime
+		bool	"libquicktime 1.2.4"
+		default	n
+
+		config	CONFIG_libsamplerate
+		bool	"libsamplerate 0.2.1"
+		default	n
+
+		config	CONFIG_mlt
+		bool	"mlt 7.0.1"
+		default	n
+
+		config	CONFIG_pipewire
+		bool	"pipewire 0.3.34"
+		default	n
+
+		config	CONFIG_sbc
+		bool	"sbc 1.5"
+		default	n
+
+		config	CONFIG_sound-theme-freedesktop
+		bool	"sound-theme-freedesktop 0.8"
+		default	n
+
+		config	CONFIG_soundtouch
+		bool	"soundtouch 2.3.0"
+		default	n
+
+		config	CONFIG_speex
+		bool	"speex 1.2.0"
+		default	n
+
+		config	CONFIG_taglib
+		bool	"taglib 1.12"
+		default	n
+
+		config	CONFIG_v4l-utils
+		bool	"v4l-utils 1.20.0"
+		default	n
+
+		config	CONFIG_xine-lib
+		bool	"xine-lib 1.2.11"
+		default	n
+
+		config	CONFIG_xvid
+		bool	"xvid 1.3.7"
+		default	n
+
+	endmenu
+
+	config	MENU_multimedia-audioutils
+	bool	"Audio Utilities"
+	default	n
+
+	menu "Audio Utilities"
+	depends on MENU_multimedia-audioutils
+
+		config	CONFIG_audacious
+		bool	"audacious 4.1"
+		default	n
+
+		config	CONFIG_cdparanoia
+		bool	"cdparanoia III-10.2"
+		default	n
+
+		config	CONFIG_kwave
+		bool	"kwave 21.08.0"
+		default	n
+
+		config	CONFIG_mpg123
+		bool	"mpg123 1.28.2"
+		default	n
+
+		config	CONFIG_pavucontrol
+		bool	"pavucontrol 5.0"
+		default	n
+
+		config	CONFIG_pnmixer
+		bool	"pnmixer 0.7.2"
+		default	n
+
+		config	CONFIG_vorbistools
+		bool	"vorbistools 1.4.2"
+		default	n
+
+	endmenu
+
+	config	MENU_multimedia-videoutils
+	bool	"Video Utilities"
+	default	n
+
+	menu "Video Utilities"
+	depends on MENU_multimedia-videoutils
+
+		config	CONFIG_mplayer
+		bool	"mplayer export-2021-07-29"
+		default	n
+
+		config	CONFIG_transcode
+		bool	"transcode 1.1.7"
+		default	n
+
+		config	CONFIG_vlc
+		bool	"vlc 3.0.16"
+		default	n
+
+		config	CONFIG_xine-ui
+		bool	"xine-ui 0.99.12"
+		default	n
+
+	endmenu
+
+	config	MENU_multimedia-cdwriteutils
+	bool	"CD/DVD-Writing Utilities"
+	default	n
+
+	menu "CD/DVD-Writing Utilities"
+	depends on MENU_multimedia-cdwriteutils
+
+		config	CONFIG_cdrdao
+		bool	"cdrdao 1.2.4"
+		default	n
+
+		config	CONFIG_cdrtools
+		bool	"cdrtools 3.02a09"
+		default	n
+
+		config	CONFIG_dvd-rw-tools
+		bool	"dvd-rw-tools 7.1"
+		default	n
+
+		config	CONFIG_libburn
+		bool	"libburn 1.5.4"
+		default	n
+
+		config	CONFIG_libisoburn
+		bool	"libisoburn 1.5.4"
+		default	n
+
+		config	CONFIG_libisofs
+		bool	"libisofs 1.5.4"
+		default	n
+
+	endmenu
+
+endmenu
+
+config	MENU_pst
+bool	"Printing, Scanning and Typesetting"
+default	n
+
+menu "Printing, Scanning and Typesetting"
+depends on MENU_pst
+
+	config	MENU_pst-printing
+	bool	"Printing"
+	default	n
+
+	menu "Printing"
+	depends on MENU_pst-printing
+
+		config	CONFIG_gutenprint
+		bool	"gutenprint 5.3.3"
+		default	n
+
+	endmenu
+
+	config	MENU_pst-scanning
+	bool	"Scanning"
+	default	n
+
+	menu "Scanning"
+	depends on MENU_pst-scanning
+
+		config	CONFIG_sane
+		bool	"sane 1.0.29"
+		default	n
+
+		config	CONFIG_xsane
+		bool	"xsane 0.999"
+		default	n
+
+	endmenu
+
+	config	MENU_pst-sgml
+	bool	"Standard Generalized Markup Language (SGML)"
+	default	n
+
+	menu "Standard Generalized Markup Language (SGML)"
+	depends on MENU_pst-sgml
+
+		config	CONFIG_docbook-dsssl
+		bool	"docbook-dsssl 1.79"
+		default	n
+
+		config	CONFIG_docbook-utils
+		bool	"docbook-utils 0.6.14"
+		default	n
+
+		config	CONFIG_openjade
+		bool	"openjade 1.3.2"
+		default	n
+
+		config	CONFIG_opensp
+		bool	"opensp 1.5.2"
+		default	n
+
+		config	CONFIG_sgml-dtd
+		bool	"sgml-dtd 4.5-dtd"
+		default	n
+
+		config	CONFIG_sgml-dtd-3
+		bool	"sgml-dtd-3 3.1-dtd"
+		default	n
+
+	endmenu
+
+	config	MENU_pst-xml
+	bool	"Extensible Markup Language (XML)"
+	default	n
+
+	menu "Extensible Markup Language (XML)"
+	depends on MENU_pst-xml
+
+		config	CONFIG_docbook5
+		bool	"docbook5 5.0"
+		default	n
+
+		config	CONFIG_docbook51
+		bool	"docbook51 5.1"
+		default	n
+
+	endmenu
+
+	config	MENU_pst-ps
+	bool	"PostScript"
+	default	n
+
+	menu "PostScript"
+	depends on MENU_pst-ps
+
+		config	CONFIG_enscript
+		bool	"enscript 1.6.6"
+		default	n
+
+		config	CONFIG_epdfview
+		bool	"epdfview 0.1.8"
+		default	n
+
+		config	CONFIG_fop
+		bool	"fop 2.6"
+		default	n
+
+		config	CONFIG_paps
+		bool	"paps 0.7.1"
+		default	n
+
+	endmenu
+
+	config	MENU_pst-typesetting
+	bool	"Typesetting"
+	default	n
+
+	menu "Typesetting"
+	depends on MENU_pst-typesetting
+
+		config	CONFIG_asymptote
+		bool	"asymptote 2.70"
+		default	n
+
+		config	CONFIG_biber
+		bool	"biber 2.16"
+		default	n
+
+		config	CONFIG_dvisvgm
+		bool	"dvisvgm 2.12"
+		default	n
+
+		config	CONFIG_tex-path
+		bool	"tex-path 1.0.0"
+		default	n
+
+		config	CONFIG_texlive
+		bool	"texlive 20210325"
+		default	n
+
+		config	CONFIG_xindy
+		bool	"xindy 2.5.1"
+		default	n
+
+	endmenu
+
+endmenu
+
+comment ""
+
+menu    "Default package for resolving MTA dependency"
+
+choice
+        prompt  "Mail server"
+        config  MS_sendmail
+                bool    "sendmail"
+        config  MS_postfix
+                bool    "postfix"
+        config  MS_exim
+                bool    "exim"
+endchoice
+config  MAIL_SERVER
+        string
+        default "sendmail"        if MS_sendmail
+        default "postfix"         if MS_postfix
+        default "exim"            if MS_exim
+
+endmenu
+
+choice
+        prompt  "Dependency level"
+        default DEPLVL_2
+
+        config  DEPLVL_1
+        bool    "Required dependencies only"
+
+        config  DEPLVL_2
+        bool    "Required plus recommended dependencies"
+
+        config  DEPLVL_3
+        bool    "Req/rec  plus optional dependencies of requested package(s)"
+
+        config  DEPLVL_4
+        bool    "All non external dependencies"
+
+endchoice
+config  optDependency
+        int
+        default 1       if DEPLVL_1
+        default 2       if DEPLVL_2
+        default 3       if DEPLVL_3
+        default 4       if DEPLVL_4
+
+config  LANGUAGE
+        string "LANG variable in the form ll_CC.charmap[@modifiers]"
+        default "en_US.UTF-8"
+        help
+            Because of the book layout, the 3 fields, ll, CC and charmap are
+            mandatory. The @modfier is honoured if present.
+
+config  KBLAYOUT
+        string "Keyboard layout (to be used in GDM)"
+        default "us"
+        help
+            Used in GDM for setting the login screen keyboard layout.
+            See the GDM page in the book for what to put into this field
+
+config  SUDO
+        bool "Build as User"
+        default y
+        help
+                Select if sudo will be used (you build as a normal user)
+                        otherwise sudo is not needed (you build as root)
+
+
+config  WRAP_INSTALL
+        bool "Use `porg style' package management"
+        default n
+        help
+                Select if you want the installation commands to be wrapped
+		between "wrapInstall '" and "' ; packInstall" functions,
+		where wrapInstall is used to set up a LD_PRELOAD library (for
+		example using porg), and packInstall makes the package tarball
+
+config	DEL_LA_FILES
+	bool "Remove libtool .la files after package installation"
+	default y
+	help
+		This option should be active on any system mixing libtool
+		and meson build systems. ImageMagick .la files are preserved.
+
+config	STATS
+	bool "Generate statistics for the requested package(s)"
+	default n
+	help
+		If you want timing and memory footprint statistics to be
+                generated for the packages you build (not their dependencies),
+		set this option to y.

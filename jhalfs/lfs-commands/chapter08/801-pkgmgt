@@ -1,0 +1,24 @@
+#!/bin/bash
+set +h
+set -e
+
+
+
+PREV_SEC=${SECONDS}
+      
+ROOT=/
+
+SCRIPT_ROOT=jhalfs
+
+echo "KB: $(du -skx --exclude=lost+found --exclude=var/lib --exclude=$SCRIPT_ROOT $ROOT)"
+SECONDS=${PREV_SEC}
+
+# Start of LFS book script
+grep -l  -e '**EDITMElibfooEDITME**.*deleted' /proc/*/maps |
+   tr -cd 0-9\\n | xargs -r ps u
+echo -e "\n\nTotalseconds: $SECONDS\n"
+
+# End of LFS book script
+
+echo "KB: $(du -skx --exclude=lost+found --exclude=var/lib --exclude=$SCRIPT_ROOT $ROOT)"
+exit

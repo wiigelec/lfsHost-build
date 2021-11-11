@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /><title>xcb-proto-1.14.1</title><link rel="stylesheet" type="text/css" href="stylesheets/lfs.css" /><meta name="generator" content="DocBook XSL-NS Stylesheets Vsnapshot" /><link rel="stylesheet" href="stylesheets/lfs-print.css" type="text/css" media="print" /></head><body class="blfs" id="blfs-11.0"><div class="navheader"><h4>Beyond Linux<sup>®</sup> From Scratch 
+  
+  <span class="phrase">(System V</span> Edition) - Version 11.0</h4><h3>Chapter 1. Installing packages in dependency build order</h3><ul><li class="prev"><a accesskey="p" href="libXau.html" title="libXau-1.0.9">Prev</a><p>libXau-1.0.9</p></li><li class="next"><a accesskey="n" href="libxcb.html" title="libxcb-1.14">Next</a><p>libxcb-1.14</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div><div class="sect1" lang="en" xml:lang="en"><h1 class="sect1"><a id="xcb-proto" name="xcb-proto"></a>xcb-proto-1.14.1</h1><div class="package" lang="en" xml:lang="en"><h2 class="sect2">Introduction to xcb-proto</h2><p>
+      The <span class="application">xcb-proto</span> package provides the
+      XML-XCB protocol descriptions that <span class="application">libxcb</span>
+      uses to generate the majority of its code and API.
+    </p><p>This package is known to build and work
+                              properly using an LFS-11.0 platform.</p><h3>Package Information</h3><div class="itemizedlist"><ul class="compact"><li class="listitem"><p>
+          Download (HTTP): <a class="ulink" href="https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-1.14.1.tar.xz">https://xorg.freedesktop.org/archive/individual/proto/xcb-proto-1.14.1.tar.xz</a>
+        </p></li><li class="listitem"></li><li class="listitem"><p>
+          Download MD5 sum: ecd6955dab1a7b9ba9756a11b8bdb48f
+        </p></li><li class="listitem"><p>
+          Download size: 144 KB
+        </p></li><li class="listitem"><p>
+          Estimated disk space required: 1.2 MB
+        </p></li><li class="listitem"><p>
+          Estimated build time: less than 0.1 SBU
+        </p></li></ul></div><h3>xcb-proto Dependencies</h3><h4>Optional</h4><p class="optional">
+      libxml2 (in full book)
+               (required to run the tests)
+    </p><p class="usernotes">User Notes:
+    <a class="ulink" href="https://wiki.linuxfromscratch.org/blfs/wiki/xcb-proto">https://wiki.linuxfromscratch.org/blfs/wiki/xcb-proto</a></p></div><div class="installation" lang="en" xml:lang="en"><h2 class="sect2">Installation of xcb-proto</h2><p>
+      Install <span class="application">xcb-proto</span> by running the following
+      commands:
+    </p><pre class="userinput"><kbd class="command">PYTHON=python3 ./configure $XORG_CONFIG</kbd></pre><p>
+      To test the results, issue: <span class="command"><strong>make check</strong></span>.
+    </p><p>
+      Now, as the <code class="systemitem">root</code> user:
+    </p><pre class="root"><kbd class="command">make install</kbd></pre></div><div class="content" lang="en" xml:lang="en"><h2 class="sect2">Contents</h2><div class="segmentedlist"><div class="seglistitem"><div class="seg"><strong class="segtitle">Installed Programs: </strong><span class="segbody">None</span></div><div class="seg"><strong class="segtitle">Installed Libraries: </strong><span class="segbody">None</span></div><div class="seg"><strong class="segtitle">Installed Directory: </strong><span class="segbody"><code class="envar">$XORG_PREFIX</code>/share/xcb and
+             <code class="envar">$XORG_PREFIX</code>/lib/python2.7/site-packages/xcbgen or
+             <code class="envar">$XORG_PREFIX</code>/lib/python3.9/site-packages/xcbgen</span></div></div></div></div><p class="updated">Last updated 
+      on
+      </p></div><div class="navfooter"><ul><li class="prev"><a accesskey="p" href="libXau.html" title="libXau-1.0.9">Prev</a><p>libXau-1.0.9</p></li><li class="next"><a accesskey="n" href="libxcb.html" title="libxcb-1.14">Next</a><p>libxcb-1.14</p></li><li class="up"><a accesskey="u" href="ch01.html" title="Chapter 1. Installing packages in dependency build order">Up</a></li><li class="home"><a accesskey="h" href="index.html" title="Beyond Linux® From Scratch &#10;  &#10;  (System V Edition) - Version 11.0">Home</a></li></ul></div></body></html>

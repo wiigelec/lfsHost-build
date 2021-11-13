@@ -113,7 +113,6 @@ all :  001-z-sudo 002-z-libxml2 003-z-docbook-xsl 004-z-libxslt 005-z-postlfs-co
 
 006-z-setupbld:  005-z-postlfs-config-profile
 	@$(call echo_message, Building)
-	@/bin/bash progress_bar.sh $@ $$PPID &
 	@source ../envars.conf && ../scripts/$@ >logs/$@ 2>&1 && \
 	#@xsltproc --stringparam packages ../packages.xml \
 	#--stringparam package "postlfs-config-profile" \

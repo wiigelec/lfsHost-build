@@ -152,9 +152,9 @@ make install-service-wpa
 ROOT_EOF
 popd
 sudo -E sh << ROOT_EOF
-cat > /etc/sysconfig/ifconfig.$net_int << "EOF"
+cat > /etc/sysconfig/ifconfig.${net_int} << "EOF"
 ONBOOT="yes"
-IFACE="$net_int"
+IFACE="${net_int}"
 SERVICE="wpa"
 
 # Additional arguments to wpa_supplicant
@@ -198,7 +198,7 @@ EOF
 #PREFIX="24"
 #BROADCAST="192.168.1.255"
 #EOF
-ifup $net_int
+ifup ${net_int}
 ROOT_EOF
 
 cd $BUILD_DIR

@@ -111,7 +111,7 @@ require subnet-mask, domain-name-servers;
 # End /etc/dhcp/dhclient.conf
 EOF
 install -v -dm 755 /var/lib/dhclient
-dhclient $net_int
+dhclient ${net_int}
 ROOT_EOF
 BOOTPKG_DIR=blfs-bootscripts
 

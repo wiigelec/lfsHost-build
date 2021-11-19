@@ -198,6 +198,7 @@ EOF
 #PREFIX="24"
 #BROADCAST="192.168.1.255"
 #EOF
+wpa_passphrase ${ssid} ${psk}> /etc/sysconfig/wpa_supplicant-${net_int}.conf
 ifup ${net_int}
 ROOT_EOF
 

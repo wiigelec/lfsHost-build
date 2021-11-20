@@ -1,0 +1,96 @@
+#!/bin/bash
+set -e
+unset MAKELEVEL
+
+export JH_PKG_DIR=sdl2
+SRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${JH_PKG_DIR}}
+BUILD_DIR=${JH_BUILD_ROOT}${JH_BUILD_SUBDIRS:+/${JH_PKG_DIR}}
+mkdir -p $SRC_DIR
+mkdir -p $BUILD_DIR
+
+cd $SRC_DIR
+PACKAGE=SDL2-2.0.16.tar.gz
+if [[ ! -f $PACKAGE ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PACKAGE ]] ; then
+    cp $JH_SRC_ARCHIVE/$PACKAGE $PACKAGE
+  else
+    wget -T 30 -t 5 https://www.libsdl.org/release/SDL2-2.0.16.tar.gz ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/s/$PACKAGE
+  fi
+fi
+echo "98b8a1535a757ea1d03ae44e2fb20247  $PACKAGE" | md5sum -c -
+
+PATCH=SDL2-2.0.16-opengl_include_fix-1.patch
+if [[ ! -f $PATCH ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PATCH ]] ; then
+    cp $JH_SRC_ARCHIVE/$PATCH $PATCH
+  else
+    wget -T 30 -t 5 https://www.linuxfromscratch.org/patches/blfs/11.0/SDL2-2.0.16-opengl_include_fix-1.patch ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/s/$PATCH
+  fi
+fi
+[[ "$SRC_DIR" != "$BUILD_DIR" ]] && ln -sf $SRC_DIR/$PATCH $BUILD_DIR
+
+cd $BUILD_DIR
+find . -maxdepth 1 -mindepth 1 -type d | xargs sudo rm -rf
+
+case $PACKAGE in
+  *.tar.gz|*.tar.bz2|*.tar.xz|*.tgz|*.tar.lzma)
+     tar -xvf $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR=`grep '[^./]\+' unpacked | head -n1 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.tar.lz)
+     bsdtar -xvf $SRC_DIR/$PACKAGE 2> unpacked
+     JH_UNPACKDIR=`head -n1 unpacked | cut  -d" " -f2 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.zip)
+     zipinfo -1 $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR="$(sed 's@/.*@@' unpacked | uniq )"
+     if test $(wc -w <<< $JH_UNPACKDIR) -eq 1; then
+       unzip $SRC_DIR/$PACKAGE
+     else
+       JH_UNPACKDIR=${PACKAGE%.zip}
+       unzip -d $JH_UNPACKDIR $SRC_DIR/$PACKAGE
+     fi
+     ;;
+  *)
+     JH_UNPACKDIR=$JH_PKG_DIR-build
+     mkdir $JH_UNPACKDIR
+     cp $SRC_DIR/$PACKAGE $JH_UNPACKDIR
+     ADDITIONAL="$(find . -mindepth 1 -maxdepth 1 -type l)"
+     if [ -n "$ADDITIONAL" ]; then
+         cp $ADDITIONAL $JH_UNPACKDIR
+     fi
+     ;;
+esac
+export JH_UNPACKDIR
+cd $JH_UNPACKDIR
+
+case $(uname -m) in
+   i?86) patch -Np1 -i ../SDL2-2.0.16-opengl_include_fix-1.patch ;;
+esac
+./configure --prefix=/usr
+make
+#pushd docs
+#  doxygen
+#popd
+sudo -E sh << ROOT_EOF
+make -j1 install
+rm -v /usr/lib/libSDL2*.a
+#install -v -m755 -d        /usr/share/doc/SDL2-2.0.16/html
+#cp -Rv  docs/output/html/* /usr/share/doc/SDL2-2.0.16/html
+
+
+for libdir in /lib /usr/lib \$(find /opt -name lib); do
+  find \$libdir -name \\*.la           \\
+             ! -path \\*ImageMagick\\* \\
+               -delete
+done
+ROOT_EOF
+sudo /sbin/ldconfig
+
+
+cd $BUILD_DIR
+[[ -n "$JH_KEEP_FILES" ]] || sudo rm -rf $JH_UNPACKDIR unpacked
+
+exit

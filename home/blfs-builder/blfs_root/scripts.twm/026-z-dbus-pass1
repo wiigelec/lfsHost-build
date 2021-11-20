@@ -1,0 +1,147 @@
+#!/bin/bash
+set -e
+unset MAKELEVEL
+
+export JH_PKG_DIR=dbus-pass1
+SRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${JH_PKG_DIR}}
+BUILD_DIR=${JH_BUILD_ROOT}${JH_BUILD_SUBDIRS:+/${JH_PKG_DIR}}
+mkdir -p $SRC_DIR
+mkdir -p $BUILD_DIR
+
+cd $SRC_DIR
+PACKAGE=dbus-1.12.20.tar.gz
+if [[ ! -f $PACKAGE ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PACKAGE ]] ; then
+    cp $JH_SRC_ARCHIVE/$PACKAGE $PACKAGE
+  else
+    wget -T 30 -t 5 https://dbus.freedesktop.org/releases/dbus/dbus-1.12.20.tar.gz ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/d/$PACKAGE
+  fi
+fi
+echo "dfe8a71f412e0b53be26ed4fbfdc91c4  $PACKAGE" | md5sum -c -
+
+cd $BUILD_DIR
+find . -maxdepth 1 -mindepth 1 -type d | xargs sudo rm -rf
+
+case $PACKAGE in
+  *.tar.gz|*.tar.bz2|*.tar.xz|*.tgz|*.tar.lzma)
+     tar -xvf $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR=`grep '[^./]\+' unpacked | head -n1 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.tar.lz)
+     bsdtar -xvf $SRC_DIR/$PACKAGE 2> unpacked
+     JH_UNPACKDIR=`head -n1 unpacked | cut  -d" " -f2 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.zip)
+     zipinfo -1 $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR="$(sed 's@/.*@@' unpacked | uniq )"
+     if test $(wc -w <<< $JH_UNPACKDIR) -eq 1; then
+       unzip $SRC_DIR/$PACKAGE
+     else
+       JH_UNPACKDIR=${PACKAGE%.zip}
+       unzip -d $JH_UNPACKDIR $SRC_DIR/$PACKAGE
+     fi
+     ;;
+  *)
+     JH_UNPACKDIR=$JH_PKG_DIR-build
+     mkdir $JH_UNPACKDIR
+     cp $SRC_DIR/$PACKAGE $JH_UNPACKDIR
+     ADDITIONAL="$(find . -mindepth 1 -maxdepth 1 -type l)"
+     if [ -n "$ADDITIONAL" ]; then
+         cp $ADDITIONAL $JH_UNPACKDIR
+     fi
+     ;;
+esac
+export JH_UNPACKDIR
+cd $JH_UNPACKDIR
+
+./configure --prefix=/usr                        \
+            --sysconfdir=/etc                    \
+            --localstatedir=/var                 \
+            --enable-user-session                \
+            --disable-doxygen-docs               \
+            --disable-xml-docs                   \
+            --disable-static                     \
+            --with-systemduserunitdir=no         \
+            --with-systemdsystemunitdir=no       \
+            --docdir=/usr/share/doc/dbus-1.12.20 \
+            --with-console-auth-dir=/run/console \
+            --with-system-pid-file=/run/dbus/pid \
+            --with-system-socket=/run/dbus/system_bus_socket
+make
+sudo -E sh << ROOT_EOF
+make -j1 install
+chown -v root:messagebus /usr/libexec/dbus-daemon-launch-helper
+chmod -v      4750       /usr/libexec/dbus-daemon-launch-helper
+dbus-uuidgen --ensure
+ln -sv /var/lib/dbus/machine-id /etc
+
+for libdir in /lib /usr/lib \$(find /opt -name lib); do
+  find \$libdir -name \\*.la           \\
+             ! -path \\*ImageMagick\\* \\
+               -delete
+done
+ROOT_EOF
+#make -k check || true
+#make -k distclean || true
+#PYTHON=python3 ./configure --enable-tests         \
+#                           --enable-asserts       \
+#                           --disable-doxygen-docs \
+#                           --disable-xml-docs || true
+#make -k || true
+#make -k check || true
+sudo /sbin/ldconfig
+
+sudo -E sh << ROOT_EOF
+cat > /etc/dbus-1/session-local.conf << "EOF"
+<!DOCTYPE busconfig PUBLIC
+ "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+<busconfig>
+
+  <!-- Search for .service files in /usr/local -->
+  <servicedir>/usr/local/share/dbus-1/services</servicedir>
+
+</busconfig>
+EOF
+ROOT_EOF
+BOOTPKG_DIR=blfs-bootscripts
+
+BOOTSRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${BOOTPKG_DIR}}
+BOOTBUILD_DIR=${JH_BUILD_ROOT}${JH_BUILD_SUBDIRS:+/${BOOTPKG_DIR}}
+mkdir -p $BOOTSRC_DIR
+mkdir -p $BOOTBUILD_DIR
+
+pushd $BOOTSRC_DIR
+URL=https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-20210826.tar.xz
+BOOTPACKG=$(basename $URL)
+if [[ ! -f $BOOTPACKG ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$BOOTPACKG ]] ; then
+    cp $JH_SRC_ARCHIVE/$BOOTPACKG $BOOTPACKG
+  else
+    wget -T 30 -t 5 $URL
+  fi
+  rm -f $BOOTBUILD_DIR/unpacked
+fi
+
+cd $BOOTBUILD_DIR
+if [[ -e unpacked ]] ; then
+  BOOTUNPACKDIR=`head -n1 unpacked | sed 's@^./@@;s@/.*@@'`
+  if ! [[ -d $BOOTUNPACKDIR ]]; then
+    tar -xvf $BOOTSRC_DIR/$BOOTPACKG > unpacked
+    BOOTUNPACKDIR=`head -n1 unpacked | sed 's@^./@@;s@/.*@@'`
+  fi
+else
+  tar -xvf $BOOTSRC_DIR/$BOOTPACKG > unpacked
+  BOOTUNPACKDIR=`head -n1 unpacked | sed 's@^./@@;s@/.*@@'`
+fi
+cd $BOOTUNPACKDIR
+sudo -E sh << ROOT_EOF
+make install-dbus
+ROOT_EOF
+popd
+
+cd $BUILD_DIR
+[[ -n "$JH_KEEP_FILES" ]] || sudo rm -rf $JH_UNPACKDIR unpacked
+
+exit

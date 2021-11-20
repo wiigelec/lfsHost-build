@@ -1,0 +1,107 @@
+#!/bin/bash
+set -e
+unset MAKELEVEL
+
+export JH_PKG_DIR=mesa
+SRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${JH_PKG_DIR}}
+BUILD_DIR=${JH_BUILD_ROOT}${JH_BUILD_SUBDIRS:+/${JH_PKG_DIR}}
+mkdir -p $SRC_DIR
+mkdir -p $BUILD_DIR
+
+cd $SRC_DIR
+PACKAGE=mesa-21.2.1.tar.xz
+if [[ ! -f $PACKAGE ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PACKAGE ]] ; then
+    cp $JH_SRC_ARCHIVE/$PACKAGE $PACKAGE
+  else
+    wget -T 30 -t 5 https://mesa.freedesktop.org/archive/mesa-21.2.1.tar.xz ||
+    wget -T 30 -t 5 ftp://ftp.freedesktop.org/pub/mesa/mesa-21.2.1.tar.xz ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/m/$PACKAGE
+  fi
+fi
+echo "f81336168864b1f890edfa5db8587f2b  $PACKAGE" | md5sum -c -
+
+PATCH=mesa-21.2.1-add_xdemos-1.patch
+if [[ ! -f $PATCH ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PATCH ]] ; then
+    cp $JH_SRC_ARCHIVE/$PATCH $PATCH
+  else
+    wget -T 30 -t 5 https://www.linuxfromscratch.org/patches/blfs/11.0/mesa-21.2.1-add_xdemos-1.patch ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/m/$PATCH
+  fi
+fi
+[[ "$SRC_DIR" != "$BUILD_DIR" ]] && ln -sf $SRC_DIR/$PATCH $BUILD_DIR
+
+cd $BUILD_DIR
+find . -maxdepth 1 -mindepth 1 -type d | xargs sudo rm -rf
+
+case $PACKAGE in
+  *.tar.gz|*.tar.bz2|*.tar.xz|*.tgz|*.tar.lzma)
+     tar -xvf $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR=`grep '[^./]\+' unpacked | head -n1 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.tar.lz)
+     bsdtar -xvf $SRC_DIR/$PACKAGE 2> unpacked
+     JH_UNPACKDIR=`head -n1 unpacked | cut  -d" " -f2 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.zip)
+     zipinfo -1 $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR="$(sed 's@/.*@@' unpacked | uniq )"
+     if test $(wc -w <<< $JH_UNPACKDIR) -eq 1; then
+       unzip $SRC_DIR/$PACKAGE
+     else
+       JH_UNPACKDIR=${PACKAGE%.zip}
+       unzip -d $JH_UNPACKDIR $SRC_DIR/$PACKAGE
+     fi
+     ;;
+  *)
+     JH_UNPACKDIR=$JH_PKG_DIR-build
+     mkdir $JH_UNPACKDIR
+     cp $SRC_DIR/$PACKAGE $JH_UNPACKDIR
+     ADDITIONAL="$(find . -mindepth 1 -maxdepth 1 -type l)"
+     if [ -n "$ADDITIONAL" ]; then
+         cp $ADDITIONAL $JH_UNPACKDIR
+     fi
+     ;;
+esac
+export JH_UNPACKDIR
+cd $JH_UNPACKDIR
+
+patch -Np1 -i ../mesa-21.2.1-add_xdemos-1.patch
+sed '1s/python/&3/' -i bin/symbols-check.py
+GALLIUM_DRV="crocus,i915,iris,nouveau,r600,radeonsi,svga,swrast,virgl"
+DRI_DRIVERS="i965,nouveau"
+mkdir build
+cd    build
+
+meson --prefix=$XORG_PREFIX          \
+      --buildtype=release            \
+      -Ddri-drivers=$DRI_DRIVERS     \
+      -Dgallium-drivers=$GALLIUM_DRV \
+      -Dgallium-nine=false           \
+      -Dglx=dri                      \
+      -Dvalgrind=disabled            \
+      -Dlibunwind=disabled           \
+      ..
+
+unset GALLIUM_DRV DRI_DRIVERS
+
+ninja
+#ninja test || true
+sudo -E sh << ROOT_EOF
+ninja install
+install -v -dm755 /usr/share/doc/mesa-21.2.1
+cp -rfv ../docs/* /usr/share/doc/mesa-21.2.1
+
+for libdir in /lib /usr/lib \$(find /opt -name lib); do
+  find \$libdir -name \\*.la           \\
+             ! -path \\*ImageMagick\\* \\
+               -delete
+done
+ROOT_EOF
+sudo /sbin/ldconfig
+
+cd $BUILD_DIR
+[[ -n "$JH_KEEP_FILES" ]] || sudo rm -rf $JH_UNPACKDIR unpacked
+
+exit

@@ -119,7 +119,7 @@ done
 cp -v zone.tab zone1970.tab iso3166.tab $ZONEINFO
 zic -d $ZONEINFO -p America/New_York
 unset ZONEINFO
-ln -sfv /usr/share/zoneinfo/America/Denver /etc/localtime
+ln -sfv /usr/share/zoneinfo/GMT /etc/localtime
 cat > /etc/ld.so.conf << "EOF"
 # Begin /etc/ld.so.conf
 /usr/local/lib

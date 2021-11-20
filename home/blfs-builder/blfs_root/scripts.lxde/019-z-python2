@@ -1,0 +1,119 @@
+#!/bin/bash
+set -e
+unset MAKELEVEL
+
+export JH_PKG_DIR=python2
+SRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${JH_PKG_DIR}}
+BUILD_DIR=${JH_BUILD_ROOT}${JH_BUILD_SUBDIRS:+/${JH_PKG_DIR}}
+mkdir -p $SRC_DIR
+mkdir -p $BUILD_DIR
+
+cd $SRC_DIR
+PACKAGE=Python-2.7.18.tar.xz
+if [[ ! -f $PACKAGE ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PACKAGE ]] ; then
+    cp $JH_SRC_ARCHIVE/$PACKAGE $PACKAGE
+  else
+    wget -T 30 -t 5 https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/p/$PACKAGE
+  fi
+fi
+echo "fd6cc8ec0a78c44036f825e739f36e5a  $PACKAGE" | md5sum -c -
+
+PATCH=Python-2.7.18-security_fixes-1.patch
+if [[ ! -f $PATCH ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PATCH ]] ; then
+    cp $JH_SRC_ARCHIVE/$PATCH $PATCH
+  else
+    wget -T 30 -t 5 https://www.linuxfromscratch.org/patches/blfs/11.0/Python-2.7.18-security_fixes-1.patch ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/p/$PATCH
+  fi
+fi
+[[ "$SRC_DIR" != "$BUILD_DIR" ]] && ln -sf $SRC_DIR/$PATCH $BUILD_DIR
+
+PACKAGE1=python-2.7.18-docs-html.tar.bz2
+if [[ ! -f $PACKAGE1 ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PACKAGE1 ]] ; then
+    cp $JH_SRC_ARCHIVE/$PACKAGE1 $PACKAGE1
+  else
+    wget -T 30 -t 5 https://docs.python.org/ftp/python/doc/2.7.18/python-2.7.18-docs-html.tar.bz2 ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/p/$PACKAGE1
+  fi
+fi
+[[ "$SRC_DIR" != "$BUILD_DIR" ]] && ln -sf $SRC_DIR/$PACKAGE1 $BUILD_DIR
+
+cd $BUILD_DIR
+find . -maxdepth 1 -mindepth 1 -type d | xargs sudo rm -rf
+
+case $PACKAGE in
+  *.tar.gz|*.tar.bz2|*.tar.xz|*.tgz|*.tar.lzma)
+     tar -xvf $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR=`grep '[^./]\+' unpacked | head -n1 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.tar.lz)
+     bsdtar -xvf $SRC_DIR/$PACKAGE 2> unpacked
+     JH_UNPACKDIR=`head -n1 unpacked | cut  -d" " -f2 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.zip)
+     zipinfo -1 $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR="$(sed 's@/.*@@' unpacked | uniq )"
+     if test $(wc -w <<< $JH_UNPACKDIR) -eq 1; then
+       unzip $SRC_DIR/$PACKAGE
+     else
+       JH_UNPACKDIR=${PACKAGE%.zip}
+       unzip -d $JH_UNPACKDIR $SRC_DIR/$PACKAGE
+     fi
+     ;;
+  *)
+     JH_UNPACKDIR=$JH_PKG_DIR-build
+     mkdir $JH_UNPACKDIR
+     cp $SRC_DIR/$PACKAGE $JH_UNPACKDIR
+     ADDITIONAL="$(find . -mindepth 1 -maxdepth 1 -type l)"
+     if [ -n "$ADDITIONAL" ]; then
+         cp $ADDITIONAL $JH_UNPACKDIR
+     fi
+     ;;
+esac
+export JH_UNPACKDIR
+cd $JH_UNPACKDIR
+
+sed -i '/2to3/d' ./setup.py
+patch -Np1 -i ../Python-2.7.18-security_fixes-1.patch
+./configure --prefix=/usr                              \
+            --enable-shared                            \
+            --with-system-expat                        \
+            --with-system-ffi                          \
+            --enable-unicode=ucs4
+make
+#make -k test || true
+sudo -E sh << ROOT_EOF
+make -j1 altinstall
+ln -s python2.7        /usr/bin/python2
+ln -s python2.7-config /usr/bin/python2-config
+chmod -v 755 /usr/lib/libpython2.7.so.1.0
+install -v -dm755 /usr/share/doc/python-2.7.18
+
+tar --strip-components=1                     \\
+    --no-same-owner                          \\
+    --directory /usr/share/doc/python-2.7.18 \\
+    -xvf ../python-2.7.18-docs-html.tar.bz2
+
+find /usr/share/doc/python-2.7.18 -type d -exec chmod 0755 {} \\;
+find /usr/share/doc/python-2.7.18 -type f -exec chmod 0644 {} \\;
+
+for libdir in /lib /usr/lib \$(find /opt -name lib); do
+  find \$libdir -name \\*.la           \\
+             ! -path \\*ImageMagick\\* \\
+               -delete
+done
+ROOT_EOF
+sudo /sbin/ldconfig
+
+sudo -E sh << ROOT_EOF
+export PYTHONDOCS=/usr/share/doc/python-2.7.18
+ROOT_EOF
+
+cd $BUILD_DIR
+[[ -n "$JH_KEEP_FILES" ]] || sudo rm -rf $JH_UNPACKDIR unpacked
+
+exit

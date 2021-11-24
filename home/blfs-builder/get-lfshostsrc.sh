@@ -7,7 +7,7 @@
 
 mkdir /mnt/lfs/sources
 
-cat > /mnt/lfs/wget-list << "EOF"
+cat > /mnt/lfs/sources/wget-list << "EOF"
 https://download.savannah.gnu.org/releases/acl/acl-2.3.1.tar.xz
 https://download.savannah.gnu.org/releases/attr/attr-2.5.1.tar.gz
 https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.xz

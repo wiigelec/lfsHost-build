@@ -1,7 +1,20 @@
 #!/bin/bash
 
 #-------------------------------------------------------------------
+# Extract tar if we have it or
 # Generate wget-list and download source to /mnt/lfs/sources
+
+# Extract tar if it exists
+if [ -f "./lfshostsrc.tar" ]; then
+	echo "Extracting lfshostsrc.tar..."
+
+	tar -xf ./lfshostsrc.tar -C /mnt/lfs
+
+	echo "Done."
+
+
+	exit
+fi
 
 # Generate wget-list
 
@@ -136,6 +149,8 @@ EOF
 pushd /mnt/lfs/sources
 wget -i wget-list
 popd
+
+echo "Done."
 
 # END script
 #-------------------------------------------------------------------

@@ -28,7 +28,7 @@ case $type in
 esac
 
 # wrong parameters
-if [ usage ]; then
+if [ $usage -eq 1 ]; then
 	echo "Usage: ./build-kernel {default,base,net,full}"
 	exit
 fi
@@ -65,9 +65,9 @@ make -j4
 make modules_install
 
 # copy files
-cp .config /boot/config-5.13.12
-cp System.map /boot/config/System.map-5.13.12
-cp arch/x86_64/bzImage /boot/vmlinuz-5.13.12-lfs-11.0
+cp -v .config /boot/config-5.13.12
+cp -v System.map /boot/System.map-5.13.12
+cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-5.13.12-lfs-11.0
 
 # cleanup
 rm -rf linux-5.13.12

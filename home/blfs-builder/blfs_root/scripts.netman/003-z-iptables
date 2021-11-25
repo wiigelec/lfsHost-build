@@ -1,0 +1,282 @@
+#!/bin/bash
+set -e
+unset MAKELEVEL
+
+export JH_PKG_DIR=iptables
+SRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${JH_PKG_DIR}}
+BUILD_DIR=${JH_BUILD_ROOT}${JH_BUILD_SUBDIRS:+/${JH_PKG_DIR}}
+mkdir -p $SRC_DIR
+mkdir -p $BUILD_DIR
+
+cd $SRC_DIR
+PACKAGE=iptables-1.8.7.tar.bz2
+if [[ ! -f $PACKAGE ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$PACKAGE ]] ; then
+    cp $JH_SRC_ARCHIVE/$PACKAGE $PACKAGE
+  else
+    wget -T 30 -t 5 http://www.netfilter.org/projects/iptables/files/iptables-1.8.7.tar.bz2 ||
+    wget -T 30 -t 5 ftp://ftp.netfilter.org/pub/iptables/iptables-1.8.7.tar.bz2 ||
+    wget -T 30 -t 5 ${JH_FTP_SERVER}svn/i/$PACKAGE
+  fi
+fi
+echo "602ba7e937c72fbb7b1c2b71c3b0004b  $PACKAGE" | md5sum -c -
+
+cd $BUILD_DIR
+find . -maxdepth 1 -mindepth 1 -type d | xargs sudo rm -rf
+
+case $PACKAGE in
+  *.tar.gz|*.tar.bz2|*.tar.xz|*.tgz|*.tar.lzma)
+     tar -xvf $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR=`grep '[^./]\+' unpacked | head -n1 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.tar.lz)
+     bsdtar -xvf $SRC_DIR/$PACKAGE 2> unpacked
+     JH_UNPACKDIR=`head -n1 unpacked | cut  -d" " -f2 | sed 's@^\./@@;s@/.*@@'`
+     ;;
+  *.zip)
+     zipinfo -1 $SRC_DIR/$PACKAGE > unpacked
+     JH_UNPACKDIR="$(sed 's@/.*@@' unpacked | uniq )"
+     if test $(wc -w <<< $JH_UNPACKDIR) -eq 1; then
+       unzip $SRC_DIR/$PACKAGE
+     else
+       JH_UNPACKDIR=${PACKAGE%.zip}
+       unzip -d $JH_UNPACKDIR $SRC_DIR/$PACKAGE
+     fi
+     ;;
+  *)
+     JH_UNPACKDIR=$JH_PKG_DIR-build
+     mkdir $JH_UNPACKDIR
+     cp $SRC_DIR/$PACKAGE $JH_UNPACKDIR
+     ADDITIONAL="$(find . -mindepth 1 -maxdepth 1 -type l)"
+     if [ -n "$ADDITIONAL" ]; then
+         cp $ADDITIONAL $JH_UNPACKDIR
+     fi
+     ;;
+esac
+export JH_UNPACKDIR
+cd $JH_UNPACKDIR
+
+./configure --prefix=/usr      \
+            --disable-nftables \
+            --enable-libipq
+make
+sudo -E sh << ROOT_EOF
+make -j1 install
+
+for libdir in /lib /usr/lib \$(find /opt -name lib); do
+  find \$libdir -name \\*.la           \\
+             ! -path \\*ImageMagick\\* \\
+               -delete
+done
+ROOT_EOF
+sudo /sbin/ldconfig
+
+sudo -E sh << ROOT_EOF
+cat > /etc/rc.d/rc.iptables << "EOF"
+#!/bin/sh
+
+# Begin rc.iptables
+
+# Insert connection-tracking modules
+# (not needed if built into the kernel)
+modprobe nf_conntrack
+modprobe xt_LOG
+
+# Enable broadcast echo Protection
+echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+
+# Disable Source Routed Packets
+echo 0 > /proc/sys/net/ipv4/conf/all/accept_source_route
+echo 0 > /proc/sys/net/ipv4/conf/default/accept_source_route
+
+# Enable TCP SYN Cookie Protection
+echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+
+# Disable ICMP Redirect Acceptance
+echo 0 > /proc/sys/net/ipv4/conf/default/accept_redirects
+
+# Do not send Redirect Messages
+echo 0 > /proc/sys/net/ipv4/conf/all/send_redirects
+echo 0 > /proc/sys/net/ipv4/conf/default/send_redirects
+
+# Drop Spoofed Packets coming in on an interface, where responses
+# would result in the reply going out a different interface.
+echo 1 > /proc/sys/net/ipv4/conf/all/rp_filter
+echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
+
+# Log packets with impossible addresses.
+echo 1 > /proc/sys/net/ipv4/conf/all/log_martians
+echo 1 > /proc/sys/net/ipv4/conf/default/log_martians
+
+# be verbose on dynamic ip-addresses  (not needed in case of static IP)
+echo 2 > /proc/sys/net/ipv4/ip_dynaddr
+
+# disable Explicit Congestion Notification
+# too many routers are still ignorant
+echo 0 > /proc/sys/net/ipv4/tcp_ecn
+
+# Set a known state
+iptables -P INPUT   DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT  DROP
+
+# These lines are here in case rules are already in place and the
+# script is ever rerun on the fly. We want to remove all rules and
+# pre-existing user defined chains before we implement new rules.
+iptables -F
+iptables -X
+iptables -Z
+
+iptables -t nat -F
+
+# Allow local-only connections
+iptables -A INPUT  -i lo -j ACCEPT
+
+# Free output on any interface to any ip for any service
+# (equal to -P ACCEPT)
+iptables -A OUTPUT -j ACCEPT
+
+# Permit answers on already established connections
+# and permit new connections related to established ones
+# (e.g. port mode ftp)
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Log everything else.
+iptables -A INPUT -j LOG --log-prefix "FIREWALL:INPUT "
+
+# End \$rc_base/rc.iptables
+EOF
+chmod 700 /etc/rc.d/rc.iptables
+ROOT_EOF
+#sudo -E sh << ROOT_EOF
+#cat > /etc/rc.d/rc.iptables << "EOF"
+#!/bin/sh
+
+# Begin rc.iptables
+
+#echo
+#echo "You're using the example configuration for a setup of a firewall"
+#echo "from Beyond Linux From Scratch."
+#echo "This example is far from being complete, it is only meant"
+#echo "to be a reference."
+#echo "Firewall security is a complex issue, that exceeds the scope"
+#echo "of the configuration rules below."
+#echo "You can find additional information"
+#echo "about firewalls in Chapter 4 of the BLFS book."
+#echo "https://www.linuxfromscratch.org/blfs"
+#echo
+
+# Insert iptables modules (not needed if built into the kernel).
+
+#modprobe nf_conntrack
+#modprobe nf_conntrack_ftp
+#modprobe xt_conntrack
+#modprobe xt_LOG
+#modprobe xt_state
+
+# Enable broadcast echo Protection
+#echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+
+# Disable Source Routed Packets
+#echo 0 > /proc/sys/net/ipv4/conf/all/accept_source_route
+
+# Enable TCP SYN Cookie Protection
+#echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+
+# Disable ICMP Redirect Acceptance
+#echo 0 > /proc/sys/net/ipv4/conf/all/accept_redirects
+
+# Don't send Redirect Messages
+#echo 0 > /proc/sys/net/ipv4/conf/default/send_redirects
+
+# Drop Spoofed Packets coming in on an interface where responses
+# would result in the reply going out a different interface.
+#echo 1 > /proc/sys/net/ipv4/conf/default/rp_filter
+
+# Log packets with impossible addresses.
+#echo 1 > /proc/sys/net/ipv4/conf/all/log_martians
+
+# Be verbose on dynamic ip-addresses  (not needed in case of static IP)
+#echo 2 > /proc/sys/net/ipv4/ip_dynaddr
+
+# Disable Explicit Congestion Notification
+# Too many routers are still ignorant
+#echo 0 > /proc/sys/net/ipv4/tcp_ecn
+
+# Set a known state
+#iptables -P INPUT   DROP
+#iptables -P FORWARD DROP
+#iptables -P OUTPUT  DROP
+
+# These lines are here in case rules are already in place and the
+# script is ever rerun on the fly. We want to remove all rules and
+# pre-existing user defined chains before we implement new rules.
+#iptables -F
+#iptables -X
+#iptables -Z
+
+#iptables -t nat -F
+
+# Allow local connections
+#iptables -A INPUT  -i lo -j ACCEPT
+#iptables -A OUTPUT -o lo -j ACCEPT
+
+# Allow forwarding if the initiated on the intranet
+#iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+#iptables -A FORWARD ! -i WAN1 -m conntrack --ctstate NEW       -j ACCEPT
+
+# Do masquerading
+# (not needed if intranet is not using private ip-addresses)
+#iptables -t nat -A POSTROUTING -o WAN1 -j MASQUERADE
+
+# Log everything for debugging
+# (last of all rules, but before policy rules)
+#iptables -A INPUT   -j LOG --log-prefix "FIREWALL:INPUT "
+#iptables -A FORWARD -j LOG --log-prefix "FIREWALL:FORWARD "
+#iptables -A OUTPUT  -j LOG --log-prefix "FIREWALL:OUTPUT "
+
+# Enable IP Forwarding
+#echo 1 > /proc/sys/net/ipv4/ip_forward
+#EOF
+#chmod 700 /etc/rc.d/rc.iptables
+#ROOT_EOF
+BOOTPKG_DIR=blfs-bootscripts
+
+BOOTSRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${BOOTPKG_DIR}}
+BOOTBUILD_DIR=${JH_BUILD_ROOT}${JH_BUILD_SUBDIRS:+/${BOOTPKG_DIR}}
+mkdir -p $BOOTSRC_DIR
+mkdir -p $BOOTBUILD_DIR
+
+pushd $BOOTSRC_DIR
+URL=https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-20210826.tar.xz
+BOOTPACKG=$(basename $URL)
+if [[ ! -f $BOOTPACKG ]] ; then
+  if [[ -f $JH_SRC_ARCHIVE/$BOOTPACKG ]] ; then
+    cp $JH_SRC_ARCHIVE/$BOOTPACKG $BOOTPACKG
+  else
+    wget -T 30 -t 5 $URL
+  fi
+  rm -f $BOOTBUILD_DIR/unpacked
+fi
+
+cd $BOOTBUILD_DIR
+if [[ -e unpacked ]] ; then
+  BOOTUNPACKDIR=`head -n1 unpacked | sed 's@^./@@;s@/.*@@'`
+  if ! [[ -d $BOOTUNPACKDIR ]]; then
+    tar -xvf $BOOTSRC_DIR/$BOOTPACKG > unpacked
+    BOOTUNPACKDIR=`head -n1 unpacked | sed 's@^./@@;s@/.*@@'`
+  fi
+else
+  tar -xvf $BOOTSRC_DIR/$BOOTPACKG > unpacked
+  BOOTUNPACKDIR=`head -n1 unpacked | sed 's@^./@@;s@/.*@@'`
+fi
+cd $BOOTUNPACKDIR
+sudo -E sh << ROOT_EOF
+make install-iptables
+ROOT_EOF
+popd
+
+cd $BUILD_DIR
+[[ -n "$JH_KEEP_FILES" ]] || sudo rm -rf $JH_UNPACKDIR unpacked
+
+exit

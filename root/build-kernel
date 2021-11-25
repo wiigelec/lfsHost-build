@@ -18,6 +18,7 @@ case $type in
 	    cp .config /boot/config-5.13.12
 	    cp System.map /boot/config/System.map-5.13.12
 	    cp arch/x86_64/bzImage /boot/vmlinuz-5.13.12-lfs-11.0
+	    rm -rf linux-5.13.12
 	    popd
 	    echo "Done."
 	    exit

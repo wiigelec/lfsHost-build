@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#-------------------------------------------------------------------
+# lfs chroot
+
+# unmount
+
+./lfs-umount
+
+# mount
+
 export LFS=/mnt/lfs
 
 mount -v --bind /dev $LFS/dev
@@ -11,8 +20,14 @@ if [ -h $LFS/dev/shm ]; then
   mkdir -pv $LFS/$(readlink $LFS/dev/shm)
 fi
 
+# chroot
+
 chroot "$LFS" /usr/bin/env -i          \
     HOME=/root TERM="$TERM"            \
     PS1='(lfs chroot) \u:\w\$ '        \
     PATH=/usr/bin:/usr/sbin            \
     /bin/bash --login
+
+
+# END script
+#-------------------------------------------------------------------

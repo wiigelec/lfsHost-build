@@ -53,6 +53,12 @@ if [ $type == "base" ]; then
 fi
 
 # net
+if [ $type == "net" ]; then
+        echo "Building net kernel..."
+	#copy config
+	cp /root/kernel-config.net /sources/linux-5.13.12/.config
+fi
+
 
 # full
 

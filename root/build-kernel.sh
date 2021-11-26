@@ -33,9 +33,11 @@ if [ $usage -eq 1 ]; then
 	exit
 fi
 
-# extract tarball
+# extract tarball and clean
 echo "Extracting /sources/linux-5.13.12.tar.xz..."
 tar -xf /sources/linux-5.13.12.tar.xz -C /sources
+echo "Cleaning source tree..."
+make mrproper
 
 # default
 if [ $type == "default" ]; then

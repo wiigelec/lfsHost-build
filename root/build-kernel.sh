@@ -37,7 +37,9 @@ fi
 echo "Extracting /sources/linux-5.13.12.tar.xz..."
 tar -xf /sources/linux-5.13.12.tar.xz -C /sources
 echo "Cleaning source tree..."
+pushd /sources/linux-5.13.12
 make mrproper
+popd
 
 # default
 if [ $type == "default" ]; then

@@ -31,6 +31,11 @@ ln -sfv /run/lock /var/lock
 
 install -dv -m 0750 /root
 install -dv -m 1777 /tmp /var/tmp
+
+#chown root and home installed by lfsHost-build
+chown root:root /root
+chown root:root /home
+
 echo -e "\n\nTotalseconds: $SECONDS\n"
 
 # End of LFS book script

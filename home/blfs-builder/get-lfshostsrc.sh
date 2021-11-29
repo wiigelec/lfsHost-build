@@ -5,7 +5,6 @@
 # Generate wget-list and download source to /mnt/lfs/sources
 
 # Extract tar if it exists
-# Extract tar if we have it
 tar_file="/usr/src/lfshostsrc.tar"
 if [ -f $tar_file ]; then
 	echo "Extracting lfshostsrc.tar..."

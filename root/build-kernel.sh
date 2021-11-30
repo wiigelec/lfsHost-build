@@ -63,8 +63,12 @@ if [ $type == "net" ]; then
 	cp /root/kernel-config.net /sources/linux-5.13.12/.config
 fi
 
-
 # full
+if [ $type == "full" ]; then
+        echo "Building full kernel..."
+	#copy config
+	cp /root/kernel-config.full /sources/linux-5.13.12/.config
+fi
 
 
 # build kernel

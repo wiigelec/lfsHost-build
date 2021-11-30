@@ -33,13 +33,13 @@ nameserver 8.8.8.8
 
 # End /etc/resolv.conf
 EOF
-echo "editHost" > /etc/hostname
+echo "newHost11.0" > /etc/hostname
 cat > /etc/hosts << "EOF"
 # Begin /etc/hosts
 
 127.0.0.1 localhost.localdomain localhost
-127.0.1.1 editHost.local editHost
-10.0.2.9 editHost.local editHost 
+127.0.1.1 newHost11.0.local newHost11.0
+10.0.2.9 newHost11.0.local newHost11.0 
 ::1       localhost ip6-localhost ip6-loopback
 ff02::1   ip6-allnodes
 ff02::2   ip6-allrouters

@@ -96,15 +96,15 @@ sudo /sbin/ldconfig
 sudo -E sh << ROOT_EOF
 echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 ROOT_EOF
-#ssh-keygen
-#ssh-copy-id -i ~/.ssh/id_rsa.pub **EDITMEREMOTE_USERNAMEEDITME**@**EDITMEREMOTE_HOSTNAMEEDITME**
-#sudo -E sh << ROOT_EOF
-#echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
-#echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
-#sed 's@d/login@d/sshd@g' /etc/pam.d/login > /etc/pam.d/sshd
-#chmod 644 /etc/pam.d/sshd
-#echo "UsePAM yes" >> /etc/ssh/sshd_config
-#ROOT_EOF
+ssh-keygen
+ssh-copy-id -i ~/.ssh/id_rsa.pub **EDITMEREMOTE_USERNAMEEDITME**@**EDITMEREMOTE_HOSTNAMEEDITME**
+sudo -E sh << ROOT_EOF
+echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
+sed 's@d/login@d/sshd@g' /etc/pam.d/login > /etc/pam.d/sshd
+chmod 644 /etc/pam.d/sshd
+echo "UsePAM yes" >> /etc/ssh/sshd_config
+ROOT_EOF
 BOOTPKG_DIR=blfs-bootscripts
 
 BOOTSRC_DIR=${JH_SRC_ARCHIVE}${JH_SRC_SUBDIRS:+/${BOOTPKG_DIR}}

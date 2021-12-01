@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# extract file
+tar -xf /sources/dejavu-fonts-ttf-2.37.tar.bz2
+
+# chdir
+pushd /sources/dejavu-fonts-ttf-2.37
+
+# install
+sudo -E sh << ROOT_EOF
+install -v -d -m755 /usr/share/fonts/dejavu
+install -v -m644 ttf/*.ttf /usr/share/fonts/dejavu
+fc-cache -v /usr/share/fonts/dejavu
+ROOT_EOF
+
+# cleanup
+popd
+rm -rf /sources/dejavu-fonts-ttf-2.37
+
+
+# END script
